@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
 
-const LoginPage = () => {
+const SignUpPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rePassword, setRePassword] = useState('');
   const [formValidity, setFormValidity] = useState({
     emailValid: true,
     passwordValid: true,
+    rePasswordValid: true,
   });
   const SubmitHandler = (event) => {
     event.preventDefault();
@@ -14,25 +16,30 @@ const LoginPage = () => {
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
     const enteredPasswordIsValid = password.length >= 6;
-    console.log(enteredPasswordIsValid);
+    const enteredRePasswordIsValid = rePassword === password;
     setFormValidity({
       emailValid: enteredEmailIsValid,
       passwordValid: enteredPasswordIsValid,
+      rePasswordValid: enteredRePasswordIsValid,
     });
-    const formIsValid = enteredEmailIsValid && enteredPasswordIsValid;
+    const formIsValid =
+      enteredEmailIsValid && enteredPasswordIsValid && rePassword;
     if (!formIsValid) {
       return;
     }
-
-    //fetch login
-
+    //fetch sign up
     setEmail('');
     setPassword('');
-    setFormValidity({ emailValid: true, passwordValid: true });
+    setRePassword('');
+    setFormValidity({
+      emailValid: true,
+      passwordValid: true,
+      rePasswordValid: true,
+    });
   };
   return (
     <Container>
-      <h1>Đăng nhập</h1>
+      <h1>Đăng ký</h1>
       <Form onSubmit={SubmitHandler}>
         <InputBlock>
           <Label htmlFor="email">Email</Label>
@@ -64,6 +71,23 @@ const LoginPage = () => {
           />
           {!formValidity.passwordValid && (
             <Error>Vui lòng nhập đúng mật khẩu (kí tự >= 6)</Error>
+          )}
+        </InputBlock>
+        <InputBlock>
+          <Label htmlFor="password">Nhập lại mật khẩu</Label>
+          <Input
+            type="password"
+            placeholder="Nhập lại mật khẩu"
+            id="password"
+            name="password"
+            autoComplete="off"
+            value={rePassword}
+            onChange={(e) => {
+              setRePassword(e.target.value);
+            }}
+          />
+          {!formValidity.rePasswordValid && (
+            <Error>Nhập lại mật khẩu không khớp</Error>
           )}
         </InputBlock>
         <Button type="submit">Đăng nhập</Button>
@@ -130,4 +154,4 @@ const Error = styled.p`
   bottom: -35px;
 `;
 
-export default LoginPage;
+export default SignUpPage;
