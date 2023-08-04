@@ -185,12 +185,6 @@ const User = styled.div`
       opacity: 1;
       visibility: visible;
     }
-
-    /* @media screen and (max-width: 991px) {
-      ${Dropdown} {
-        display: none;
-      }
-    } */
   }
 `;
 
