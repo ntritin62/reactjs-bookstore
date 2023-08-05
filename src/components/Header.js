@@ -6,7 +6,9 @@ const Header = () => {
   return (
     <Container>
       <Inner>
-        <Logo src="/images/logo.svg" alt="" />
+        <Link to={ROUTES.HOME}>
+          <Logo src="/images/logo.svg" alt="" />
+        </Link>
         <Search>
           <input type="text" placeholder="Tìm kiếm sản phẩm mong muốn..." />
           <button>
@@ -60,7 +62,7 @@ const Inner = styled.div`
 `;
 
 const Logo = styled.img`
-  height: 100%;
+  height: 60px;
 `;
 
 const Search = styled.div`
