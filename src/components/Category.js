@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
-const LeftSide = () => {
+const LeftSide = (props) => {
   const [category, setCategory] = useState('');
   const [price, setPrice] = useState('');
 
@@ -23,8 +23,12 @@ const LeftSide = () => {
     const minPrice = parseInt(prices[0]);
     const maxPrice = parseInt(prices[1]);
 
-    console.log(minPrice, maxPrice);
+    props.onPriceChange(minPrice, maxPrice);
   }, [price]);
+
+  useEffect(() => {
+    props.onCategoryChange(category);
+  }, [category]);
 
   return (
     <Container>
