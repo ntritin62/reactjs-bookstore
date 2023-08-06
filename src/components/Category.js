@@ -1,34 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { styled } from 'styled-components';
 
 const LeftSide = (props) => {
-  const [category, setCategory] = useState('');
-  const [price, setPrice] = useState('');
-
   const CategoryHandler = (e) => {
-    if (category !== e.target.value) {
-      setCategory(e.target.value);
-    }
+    const category = e.target.value;
+    props.onCategoryChange(category);
   };
 
   const PriceHandler = (e) => {
-    if (price !== e.target.value) {
-      setPrice(e.target.value);
-    }
+    const price = e.target.value;
+    props.onPriceChange(price);
   };
-
-  useEffect(() => {
-    const prices = price.split('-');
-
-    const minPrice = parseInt(prices[0]);
-    const maxPrice = parseInt(prices[1]);
-
-    props.onPriceChange(minPrice, maxPrice);
-  }, [price]);
-
-  useEffect(() => {
-    props.onCategoryChange(category);
-  }, [category]);
 
   return (
     <Container>
