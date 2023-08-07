@@ -50,6 +50,7 @@ const Container = styled.div`
   left: 0;
   right: 0;
   background-color: #fff;
+  z-index: 1000;
 `;
 
 const Inner = styled.div`

@@ -1,61 +1,112 @@
 import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import LeftSide from '../components/Category';
+import Main from '../components/Main';
+
 const DUMMY_BOOKS = [
-  { price: 1500000, category: 'thieu-nhi' },
-  { price: 550000, category: 'manga' },
-  { price: 350000, category: 'thieu-nhi' },
-  { price: 250000, category: 'van-hoc' },
-  { price: 550000, category: 'van-hoc' },
-  { price: 50000, category: 'manga' },
+  {
+    id: '1',
+    price: 71500,
+    oldprice: 110000,
+    title: 'Alice In Borderland - Tập 14 - Tặng Kèm Card Giấy',
+    saleoff: 35,
+    imgURL:
+      'https://cdn0.fahasa.com/media/catalog/product/n/x/nxbtre_full_19482023_024811_1.jpg',
+    category: 'thieu-nhi',
+    stars: '',
+  },
+  {
+    id: '2',
+    price: 71500,
+    oldprice: 110000,
+    title: 'Không Diệt Không Sinh Đừng Sợ Hãi (Tái Bản 2022)',
+    saleoff: 35,
+    imgURL:
+      'https://cdn0.fahasa.com/media/catalog/product/b/l/bluelock_bia_tap-12-1.jpg',
+    category: 'thieu-nhi',
+    stars: '',
+  },
+  {
+    id: '3',
+    price: 71500,
+    oldprice: 110000,
+    title: 'Không Diệt Không Sinh Đừng Sợ Hãi (Tái Bản 2022)',
+    saleoff: 35,
+    imgURL:
+      'https://cdn0.fahasa.com/media/catalog/product/8/9/8935278607311.jpg',
+    category: 'thieu-nhi',
+    stars: '',
+  },
+  {
+    id: '4',
+    price: 71500,
+    oldprice: 110000,
+    title: 'Không Diệt Không Sinh Đừng Sợ Hãi (Tái Bản 2022)',
+    saleoff: 35,
+    imgURL:
+      'https://cdn0.fahasa.com/media/catalog/product/8/9/8935278607311.jpg',
+    category: 'thieu-nhi',
+    stars: '',
+  },
+  {
+    id: '4',
+    price: 71500,
+    oldprice: 110000,
+    title: 'Không Diệt Không Sinh Đừng Sợ Hãi (Tái Bản 2022)',
+    saleoff: 35,
+    imgURL:
+      'https://cdn0.fahasa.com/media/catalog/product/8/9/8935278607311.jpg',
+    category: 'thieu-nhi',
+    stars: '',
+  },
 ];
-let filteredBooks = [];
+let filteredBooks = DUMMY_BOOKS;
+let filteredBooksByPrice = [];
+let filteredBooksByCategory = [];
+
 const HomePage = () => {
   const [books, setBooks] = useState(DUMMY_BOOKS);
-  const [category, setCategory] = useState('');
-  const [price, setPrice] = useState('');
+  const [category, setCategory] = useState(null);
+  const [price, setPrice] = useState(null);
 
   const PriceChangeHandler = (price) => {
-    // filteredBooks = filteredBooks.filter((book) =>
-    //   max ? book.price >= min && book.price <= max : book.price >= min
-    // );
     setPrice(price);
   };
 
   const CategoryChangeHandler = (category) => {
-    // filteredBooks = filteredBooks.filter((book) => book.category === category);
     setCategory(category);
   };
-  useEffect(() => {
-    let filteredBooksByPrice = [];
-    let filteredBooksByCategory = [];
-    const prices = price.split('-');
-    const min = parseInt(prices[0]);
-    const max = parseInt(prices[1]);
 
+  useEffect(() => {
     if (price) {
+      const prices = price.split('-');
+      const min = parseFloat(prices[0]);
+      const max = parseFloat(prices[1]);
       filteredBooksByPrice = DUMMY_BOOKS.filter((book) =>
         max ? book.price >= min && book.price <= max : book.price >= min
       );
     }
-    console.log('filteredBooksByPrice', filteredBooksByPrice);
 
     if (category) {
       filteredBooksByCategory = DUMMY_BOOKS.filter(
         (book) => book.category === category
       );
-      console.log('filteredBooksByCategory', filteredBooksByCategory);
     }
+    if (price || category) {
+      if (!price) {
+        filteredBooks = filteredBooksByCategory;
+      } else if (!category) {
+        filteredBooks = filteredBooksByPrice;
+      } else {
+        filteredBooks = filteredBooksByCategory.filter((item) =>
+          filteredBooksByPrice.includes(item)
+        );
+      }
 
-    filteredBooks = filteredBooksByCategory.filter((item) =>
-      filteredBooksByPrice.includes(item)
-    );
-    console.log('books', filteredBooks);
+      console.log('filteredBooks', filteredBooks);
+      setBooks(filteredBooks);
+    }
   }, [price, category]);
-
-  useEffect(() => {
-    setBooks(filteredBooks);
-  }, []);
 
   return (
     <Container>
@@ -63,6 +114,8 @@ const HomePage = () => {
         onPriceChange={PriceChangeHandler}
         onCategoryChange={CategoryChangeHandler}
       />
+      {console.log('books', books)}
+      <Main books={books} />
     </Container>
   );
 };
@@ -74,5 +127,11 @@ const Container = styled.div`
   max-width: 1230px;
   height: 1000px;
   margin: 90px auto;
+  column-gap: 20px;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 export default HomePage;

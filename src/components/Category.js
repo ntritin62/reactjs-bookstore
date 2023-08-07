@@ -59,6 +59,7 @@ const LeftSide = (props) => {
               onClick={PriceHandler}
             />
             <label htmlFor="0-15"> 0đ - 150000đ</label>
+            <span></span>
           </PriceItem>
           <PriceItem>
             <input
@@ -69,6 +70,7 @@ const LeftSide = (props) => {
               onClick={PriceHandler}
             />
             <label htmlFor="15-30"> 150000đ - 300000đ</label>
+            <span></span>
           </PriceItem>
           <PriceItem>
             <input
@@ -79,6 +81,7 @@ const LeftSide = (props) => {
               onClick={PriceHandler}
             />
             <label htmlFor="30-50"> 300000đ - 500000đ</label>
+            <span></span>
           </PriceItem>
           <PriceItem>
             <input
@@ -89,6 +92,7 @@ const LeftSide = (props) => {
               onClick={PriceHandler}
             />
             <label htmlFor="50-70"> 500000đ - 700000đ</label>
+            <span></span>
           </PriceItem>
           <PriceItem>
             <input
@@ -99,6 +103,7 @@ const LeftSide = (props) => {
               onClick={PriceHandler}
             />
             <label htmlFor="70"> 700000đ - Trở lên</label>
+            <span></span>
           </PriceItem>
         </PriceList>
       </Inner>
@@ -136,6 +141,7 @@ const Inner = styled.div`
 const CategoryItem = styled.li`
   margin: 10px 0;
   list-style: none;
+
   input {
     display: none;
   }
@@ -160,7 +166,37 @@ const Category = styled.ul`
 const PriceList = styled.ul``;
 
 const PriceItem = styled(CategoryItem)`
-  input {
-    display: inline-block;
+  position: relative;
+  span {
+    position: absolute;
+    top: 5px;
+    left: -15px;
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+    border: 1px solid #666;
+  }
+
+  input:checked ~ span {
+    background: #f7941e;
+  }
+
+  span:after {
+    content: '';
+    position: absolute;
+    display: none;
+    left: 2px;
+    top: 0px;
+    width: 3px;
+    height: 6px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  input:checked ~ span:after {
+    display: block;
   }
 `;
