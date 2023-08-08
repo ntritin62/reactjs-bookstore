@@ -195,7 +195,7 @@ const ProductSaleOff = styled.span`
   margin-left: 8px;
   padding: 4px;
   border-radius: 4px;
-  background-color: #c92127;
+  background-color: #2ee5ab;
   color: #fff;
   font-size: 1em;
   font-weight: 600;

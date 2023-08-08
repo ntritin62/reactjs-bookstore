@@ -44,7 +44,7 @@ const BookSale = styled.span`
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgb(247, 148, 30);
+  background: #2ee5ab;
   display: flex;
   align-items: center;
   justify-content: center;

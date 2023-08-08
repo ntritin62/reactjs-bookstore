@@ -153,7 +153,7 @@ const CategoryItem = styled.li`
   }
 
   input:checked + label {
-    color: #f7941e;
+    color: #2ee5ab;
     font-weight: bold;
     font-size: 14px;
   }
@@ -178,18 +178,18 @@ const PriceItem = styled(CategoryItem)`
   }
 
   input:checked ~ span {
-    background: #f7941e;
+    background: #2ee5ab;
   }
 
   span:after {
     content: '';
     position: absolute;
     display: none;
-    left: 2px;
-    top: 0px;
-    width: 3px;
-    height: 6px;
-    border: solid white;
+    left: 1px;
+    top: -1px;
+    width: 2px;
+    height: 5px;
+    border: solid #333;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
