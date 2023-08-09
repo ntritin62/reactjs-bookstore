@@ -7,6 +7,7 @@ import SignUpPage from './pages/SignUpPage';
 import HomePage from './pages/HomePage';
 import ProductDetails from './pages/ProductDetails';
 import CheckOutPage from './pages/CheckOutPage';
+import LastStepCheckOutPage from './pages/LastStepCheckOutPage';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       { path: `${ROUTES.SIGNUP}`, element: <SignUpPage /> },
       { path: 'product/:productID', element: <ProductDetails /> },
       { path: `${ROUTES.CHECKOUT}`, element: <CheckOutPage /> },
+      { path: `${ROUTES.LASTSTEPCHECKOUT}`, element: <LastStepCheckOutPage /> },
     ],
   },
 ]);

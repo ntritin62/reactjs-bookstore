@@ -1,14 +1,13 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 const CheckOut = () => {
-  const prodQty = useSelector((state) => state.cart.products.length);
-
+  const cartProdQty = useSelector((state) => state.cart.products.length);
   return (
     <Container>
       <Badge>
         <img src="/images/cart.svg" alt="" />
-        {prodQty !== 0 && <span>{prodQty}</span>}
+        {cartProdQty !== 0 && <span>{cartProdQty}</span>}
       </Badge>
       <span>Giỏ hàng</span>
     </Container>
@@ -21,25 +20,24 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
 `;
 
 const Badge = styled.div`
   position: relative;
-
   span {
     position: absolute;
+    display: inline-block;
+    top: -8px;
+    right: -8px;
     width: 15px;
     height: 15px;
-    font-size: 11px;
-    top: -5px;
-    right: -10px;
     border-radius: 50%;
     background-color: red;
-    color: white;
+    font-size: 12px;
     display: flex;
+    color: #fff;
     align-items: center;
+    font-weight: 700;
     justify-content: center;
-    font-weight: 600;
   }
 `;

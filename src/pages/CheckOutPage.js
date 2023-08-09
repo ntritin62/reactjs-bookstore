@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 import ProductCartItem from '../components/ProductCartItem';
+import * as ROUTES from '../constants/routes';
 
 const CheckOutPage = () => {
   return (
@@ -22,7 +24,9 @@ const CheckOutPage = () => {
           <TotalPrice>
             <span>Tổng Số Tiền (gồm VAT)</span> 29.750 đ
           </TotalPrice>
-          <CheckOutBtn>thanh toán</CheckOutBtn>
+          <Link to={ROUTES.LASTSTEPCHECKOUT}>
+            <CheckOutBtn>thanh toán</CheckOutBtn>
+          </Link>
         </RightSide>
       </Inner>
     </Container>
@@ -107,6 +111,7 @@ const CheckOutBtn = styled.button`
   font-weight: 700;
   font-size: 20px;
   background-color: #2ee5ab;
+  cursor: pointer;
 `;
 
 const ProductCartList = styled.div`
