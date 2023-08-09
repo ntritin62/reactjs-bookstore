@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
+import CheckOut from './CheckOut';
 const Header = () => {
   return (
     <Container>
@@ -17,10 +18,7 @@ const Header = () => {
         </Search>
         <Nav>
           <Link to={ROUTES.CHECKOUT}>
-            <Checkout>
-              <img src="/images/cart.svg" alt="" />
-              <span>Giỏ hàng</span>
-            </Checkout>
+            <CheckOut />
           </Link>
           <User>
             <img src="/images/user.svg" alt="" />
@@ -189,12 +187,6 @@ const User = styled.div`
       visibility: visible;
     }
   }
-`;
-
-const Checkout = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 export default Header;
