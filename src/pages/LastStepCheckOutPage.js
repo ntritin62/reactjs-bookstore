@@ -4,6 +4,7 @@ import UserForm from '../components/UserForm';
 import Payment from '../components/Payment';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
+import CartCheck from '../components/CartCheck';
 const LastStepCheckOutPage = () => {
   return (
     <>
@@ -15,6 +16,10 @@ const LastStepCheckOutPage = () => {
         <LayOut>
           <Title>PHƯƠNG THỨC THANH TOÁN</Title>
           <Payment />
+        </LayOut>
+        <LayOut>
+          <Title>kiểm tra lại đơn hàng</Title>
+          <CartCheck />
         </LayOut>
       </Container>
       <CTAActions>
@@ -59,6 +64,9 @@ const LayOut = styled.div`
   background-color: #fff;
   margin-bottom: 20px;
   border-radius: 10px;
+  &:last-child {
+    margin-bottom: 150px;
+  }
 `;
 
 const Title = styled.h2`
