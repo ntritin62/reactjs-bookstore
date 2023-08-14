@@ -7,36 +7,38 @@ const ProductCartItem = () => {
         src="https://cdn0.fahasa.com/media/catalog/product//b/l/bluelock_bia_tap-12-1.jpg"
         alt=""
       />
-      <ProductInfo>
-        <ProductTitle>BlueLock - Tập 12 - Tặng Kèm Card PVC</ProductTitle>
-        <div>
-          <ProductNewPrice>29.750 đ</ProductNewPrice>
-          <ProductOldPrice>35.000 đ</ProductOldPrice>
-        </div>
-      </ProductInfo>
-      <ProductQty>
-        <div>
-          <button
-          //   onClick={() => setQuantity((prev) => prev - 1)}
-          //   disabled={quantity === 0}
-          >
-            <img
-              src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_minus2x.png"
-              alt=""
-            />
-          </button>
-          10
-          <button
-          // onClick={() => setQuantity((prev) => prev + 1)}
-          >
-            <img
-              src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_plus2x.png"
-              alt=""
-            />
-          </button>
-        </div>
-      </ProductQty>
-      <ProductTotalPrice>125.970 đ</ProductTotalPrice>
+      <section>
+        <ProductInfo>
+          <ProductTitle>BlueLock - Tập 12 - Tặng Kèm Card PVC</ProductTitle>
+          <div>
+            <ProductNewPrice>29.750 đ</ProductNewPrice>
+            <ProductOldPrice>35.000 đ</ProductOldPrice>
+          </div>
+        </ProductInfo>
+        <ProductQty>
+          <div>
+            <button
+            //   onClick={() => setQuantity((prev) => prev - 1)}
+            //   disabled={quantity === 0}
+            >
+              <img
+                src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_minus2x.png"
+                alt=""
+              />
+            </button>
+            10
+            <button
+            // onClick={() => setQuantity((prev) => prev + 1)}
+            >
+              <img
+                src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_plus2x.png"
+                alt=""
+              />
+            </button>
+          </div>
+        </ProductQty>
+        <ProductTotalPrice>125.970 đ</ProductTotalPrice>
+      </section>
       <DeleteButton>
         <img src="/images/trash-can.svg" alt="" />
       </DeleteButton>
@@ -48,15 +50,29 @@ export default ProductCartItem;
 
 const Container = styled.div`
   background-color: #fff;
-  padding: 20px 100px;
+  padding: 20px 0 20px 100px;
   display: grid;
-  grid-template-columns: 2fr 5fr 2fr 2fr;
+  grid-template-columns: 2fr 10fr 2fr;
   column-gap: 20px;
   align-items: center;
   position: relative;
   border-bottom: 1px solid #ededed;
   &:last-child {
     border-bottom: none;
+  }
+  section {
+    display: flex;
+    column-gap: 10px;
+    flex-shrink: 0;
+    align-items: center;
+  }
+  @media screen and (max-width: 991px) {
+    padding: 20px 0;
+    section {
+      flex-direction: column;
+      align-items: flex-start;
+      row-gap: 20px;
+    }
   }
 `;
 
@@ -67,14 +83,19 @@ const ProductImage = styled.img`
 `;
 
 const ProductInfo = styled.div`
+  width: 200px;
   display: flex;
   flex-direction: column;
-
-  margin-left: 20px;
+  /* margin-left: 20px; */
+  div {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 const ProductQty = styled.div`
   /* margin: 0 50px; */
+  margin-left: 20px;
   text-align: center;
   div {
     border: 1px solid #c1c1c1;
@@ -98,13 +119,20 @@ const ProductQty = styled.div`
       }
     }
   }
+  @media screen and (max-width: 991px) {
+    margin-left: 0;
+  }
 `;
 
 const ProductTotalPrice = styled.span`
+  margin-left: 20px;
   text-align: center;
   color: #c92127;
   font-weight: bold;
   font-size: 15px;
+  @media screen and (max-width: 991px) {
+    display: none;
+  }
 `;
 
 const ProductOldPrice = styled.span`
@@ -120,7 +148,6 @@ const ProductNewPrice = styled.span`
   color: #333;
   font-weight: 650;
   text-align: left;
-  width: 100%;
 `;
 
 const ProductTitle = styled.h2`
@@ -135,10 +162,10 @@ const ProductTitle = styled.h2`
 `;
 
 const DeleteButton = styled.button`
-  position: absolute;
+  /* position: absolute;
   right: 20px;
   top: 50%;
-  translate: -50% -50%;
+  translate: -50% -50%; */
   border: none;
   background: transparent;
   img {
@@ -147,5 +174,15 @@ const DeleteButton = styled.button`
     svg {
       color: #2759ae;
     }
+  }
+`;
+
+const Mobile = styled.div`
+  max-width: 100%;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  @media screen and (min-width: 992px) {
+    display: none;
   }
 `;

@@ -52,10 +52,17 @@ const Inner = styled.div`
   grid-template-columns: 2fr 1fr;
   margin-top: 20px;
   column-gap: 15px;
+  @media screen and (max-width: 991px) {
+    display: block;
+  }
 `;
 
 const LeftSide = styled.div`
   height: auto;
+  @media screen and (max-width: 991px) {
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 
 const RightSide = styled.div`
@@ -66,6 +73,9 @@ const RightSide = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  @media screen and (max-width: 991px) {
+    display: none;
+  }
 `;
 
 const Header = styled.div`
@@ -80,9 +90,12 @@ const Header = styled.div`
   padding-right: 100px;
   div {
     margin-left: 50px;
-    margin-right: 10px;
+    margin-right: 15px;
     font-weight: 600;
     font-size: 15px;
+  }
+  @media screen and (max-width: 991px) {
+    display: none;
   }
 `;
 

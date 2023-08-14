@@ -105,6 +105,9 @@ const CTAActions = styled.div`
         font-weight: 600;
         font-size: 15px;
       }
+      @media screen and (max-width: 991px) {
+        display: none;
+      }
     }
     button {
       background: #2ee5ab;
@@ -117,6 +120,10 @@ const CTAActions = styled.div`
       font-weight: 700;
       font-size: 18px;
       cursor: pointer;
+      @media screen and (max-width: 991px) {
+        margin: 0 auto;
+        width: 80%;
+      }
     }
   }
 `;

@@ -123,20 +123,14 @@ const UserForm = () => {
 
 export default UserForm;
 
-const Container = styled.div`
-  max-width: 1230px;
-  background-color: #fff;
-  margin: 70px auto 0;
-  padding: 30px;
-  text-align: center;
-`;
 const Form = styled.form`
   padding: 0px 8px 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media screen and (max-width: 991px) {
-    width: 100vh;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    max-width: 100%;
   }
 `;
 const Input = styled.input`
@@ -146,6 +140,10 @@ const Input = styled.input`
   border: 1px solid #ced4da;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   border-radius: 0.25rem;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 const Label = styled.label`
   font-size: 14px;
@@ -163,6 +161,10 @@ const InputBlock = styled.div`
   padding: 8px 0;
   margin-bottom: 20px;
   position: relative;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 const Button = styled.button`
   padding: 8px 0;

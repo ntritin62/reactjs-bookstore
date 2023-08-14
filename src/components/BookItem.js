@@ -26,7 +26,7 @@ const Container = styled.article`
   align-items: flex-start;
   color: #333333;
   position: relative;
-  padding: 10px;
+  padding: 10px 0;
   &:hover {
     box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.1);
@@ -39,10 +39,10 @@ const BookImage = styled.img`
 
 const BookSale = styled.span`
   position: absolute;
-  right: 5px;
-  top: 5px;
-  width: 44px;
-  height: 44px;
+  right: 10px;
+  top: 10px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   background: #2ee5ab;
   display: flex;

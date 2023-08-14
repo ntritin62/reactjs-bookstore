@@ -360,9 +360,11 @@ const Container = styled.div`
   margin: 90px auto;
   column-gap: 20px;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 991px) {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 100%;
   }
 `;
 export default HomePage;

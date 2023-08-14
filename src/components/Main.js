@@ -51,23 +51,25 @@ export default Main;
 const Container = styled.div`
   grid-area: main;
   background: #fff;
-  min-height: 2000px;
   padding: 25px 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   @media screen and (max-width: 768px) {
+    padding: 20px 10px;
     width: 100%;
     margin-top: 20px;
   }
 
   .pagination {
+    margin-top: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
     list-style: none;
     column-gap: 20px;
+    padding: 0;
 
     .page-num {
       background-color: #fff;
