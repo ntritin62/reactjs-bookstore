@@ -67,6 +67,35 @@ const ProductDetails = () => {
           </Modal>
         </div>
       )}
+      <Mobile>
+        <QuantityActions>
+          <span>Số lượng:</span>
+          <div>
+            <button
+              onClick={() => setQuantity((prev) => prev - 1)}
+              disabled={quantity === 0}
+            >
+              <img
+                src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_minus2x.png"
+                alt=""
+              />
+            </button>
+            {quantity}
+            <button onClick={() => setQuantity((prev) => prev + 1)}>
+              <img
+                src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_plus2x.png"
+                alt=""
+              />
+            </button>
+          </div>
+        </QuantityActions>
+        <ProductActions>
+          <button onClick={() => setModalIsShowed(true)}>
+            Thêm vào giỏ hàng
+          </button>
+          <button>Mua ngay</button>
+        </ProductActions>
+      </Mobile>
     </>
   );
 };
@@ -81,6 +110,14 @@ const Container = styled.div`
   grid-template-columns: 2fr 3fr;
   padding: 20px;
   column-gap: 100px;
+  @media screen and (max-width: 991px) {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    column-gap: 50px;
+    margin-top: 60px;
+  }
 `;
 
 const MediaDetails = styled.div`
@@ -118,6 +155,10 @@ const ProductActions = styled.div`
   button:nth-child(2) {
     background-color: #2ee5ab;
     color: #fff;
+  }
+
+  @media screen and (max-width: 991px) {
+    display: none;
   }
 `;
 
@@ -172,6 +213,9 @@ const QuantityActions = styled.div`
         width: 10px;
       }
     }
+  }
+  @media screen and (max-width: 991px) {
+    display: none;
   }
 `;
 
@@ -252,4 +296,50 @@ const Backdrop = styled.div`
   right: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 9999;
+`;
+
+const Mobile = styled.div`
+  display: none;
+  @media screen and (max-width: 991px) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    width: 100%;
+    height: 60px;
+    display: grid;
+    background-color: #fff;
+    grid-template-columns: 1fr 2fr;
+    box-shadow: 0px -2px 4px #0000001a;
+    ${QuantityActions} {
+      display: inline-block;
+      margin-top: 0;
+      div {
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        border: none;
+        border-right: 1px solid #eee;
+      }
+      span {
+        display: none;
+        color: #0d0e0f;
+        font-weight: 900;
+      }
+    }
+    ${ProductActions} {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      column-gap: 0;
+      width: 100%;
+      margin-top: 0;
+      button {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        border: none;
+      }
+    }
+  }
 `;

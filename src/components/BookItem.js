@@ -26,7 +26,7 @@ const Container = styled.article`
   align-items: flex-start;
   color: #333333;
   position: relative;
-  padding: 10px 0;
+  padding: 10px 10px;
   &:hover {
     box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.1);
