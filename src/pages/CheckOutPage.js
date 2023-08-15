@@ -22,7 +22,7 @@ const CheckOutPage = () => {
         </LeftSide>
         <RightSide>
           <TotalPrice>
-            <span>Tổng Số Tiền (gồm VAT)</span> 29.750 đ
+            <span>Tổng Số Tiền</span> 29.750 đ
           </TotalPrice>
           <Link to={ROUTES.LASTSTEPCHECKOUT}>
             <CheckOutBtn>thanh toán</CheckOutBtn>
@@ -62,6 +62,7 @@ const LeftSide = styled.div`
   @media screen and (max-width: 991px) {
     width: 100%;
     max-width: 100%;
+    margin-bottom: 200px;
   }
 `;
 
@@ -74,7 +75,10 @@ const RightSide = styled.div`
   flex-direction: column;
   justify-content: space-around;
   @media screen and (max-width: 991px) {
-    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
   }
 `;
 
