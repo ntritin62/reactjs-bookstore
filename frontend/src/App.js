@@ -6,7 +6,7 @@ import LoginPage, { action as LoginAction } from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import HomePage from './pages/HomePage';
 import { loader as HomePageLoader } from './pages/HomePage/loader';
-import ProductDetails from './pages/ProductDetails/ProductDetails';
+import ProductDetails from './pages/ProductDetails';
 import CheckOutPage from './pages/CheckOutPage';
 import LastStepCheckOutPage from './pages/LastStepCheckOutPage';
 

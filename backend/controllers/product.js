@@ -7,11 +7,30 @@ const Product = require('../models/product');
 
 exports.geProducts = (req, res, next) => {
   Product.find()
-    .then((posts) => {
+    .then((products) => {
       res.status(200).json({
         message: 'Fetched posts successfully',
-        posts: posts,
+        products: products,
       });
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      next(err);
+    });
+};
+
+exports.getProduct = (req, res, next) => {
+  const postId = req.params.postId;
+  Product.findById(postId)
+    .then((product) => {
+      if (!post) {
+        const error = new Error('Could not find post.');
+        error.statusCode = 404;
+        throw error;
+      }
+      res.status(200).json({ message: 'Post fetched', product: product });
     })
     .catch((err) => {
       if (!err.statusCode) {
@@ -61,25 +80,6 @@ exports.geProducts = (req, res, next) => {
 //         post: post,
 //         creator: { _id: creator._id, name: creator.name },
 //       });
-//     })
-//     .catch((err) => {
-//       if (!err.statusCode) {
-//         err.statusCode = 500;
-//       }
-//       next(err);
-//     });
-// };
-
-// exports.getPost = (req, res, next) => {
-//   const postId = req.params.postId;
-//   Post.findById(postId)
-//     .then((post) => {
-//       if (!post) {
-//         const error = new Error('Could not find post.');
-//         error.statusCode = 404;
-//         throw error;
-//       }
-//       res.status(200).json({ message: 'Post fetched', post: post });
 //     })
 //     .catch((err) => {
 //       if (!err.statusCode) {
