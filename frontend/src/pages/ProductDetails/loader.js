@@ -1,12 +1,13 @@
-export async function loader() {
-  //   return fetch('http://localhost:8080/products')
-  //     .then((response) => {
-  //       return response.json();
-  //     })
-  //     .then((resData) => {
-  //       return resData.products;
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
+export async function loader({ params }) {
+  const productId = params.productID;
+  return fetch('http://localhost:8080/products/' + productId)
+    .then((response) => {
+      return response.json();
+    })
+    .then((resData) => {
+      return resData.product;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }

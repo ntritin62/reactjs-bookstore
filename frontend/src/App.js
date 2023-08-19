@@ -7,6 +7,7 @@ import SignUpPage from './pages/SignUpPage';
 import HomePage from './pages/HomePage';
 import { loader as HomePageLoader } from './pages/HomePage/loader';
 import ProductDetails from './pages/ProductDetails';
+import { loader as ProductDetailsLoader } from './pages/ProductDetails/loader';
 import CheckOutPage from './pages/CheckOutPage';
 import LastStepCheckOutPage from './pages/LastStepCheckOutPage';
 
@@ -24,7 +25,11 @@ const router = createBrowserRouter([
         action: LoginAction,
       },
       { path: `${ROUTES.SIGNUP}`, element: <SignUpPage /> },
-      { path: 'product/:productID', element: <ProductDetails /> },
+      {
+        path: 'product/:productID',
+        element: <ProductDetails />,
+        loader: ProductDetailsLoader,
+      },
       { path: `${ROUTES.CHECKOUT}`, element: <CheckOutPage /> },
       { path: `${ROUTES.LASTSTEPCHECKOUT}`, element: <LastStepCheckOutPage /> },
     ],

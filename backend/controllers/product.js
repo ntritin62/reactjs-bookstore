@@ -9,7 +9,7 @@ exports.geProducts = (req, res, next) => {
   Product.find()
     .then((products) => {
       res.status(200).json({
-        message: 'Fetched posts successfully',
+        message: 'Fetched products successfully',
         products: products,
       });
     })
@@ -22,15 +22,15 @@ exports.geProducts = (req, res, next) => {
 };
 
 exports.getProduct = (req, res, next) => {
-  const postId = req.params.postId;
-  Product.findById(postId)
+  const productId = req.params.productId;
+  Product.findById(productId)
     .then((product) => {
-      if (!post) {
-        const error = new Error('Could not find post.');
+      if (!product) {
+        const error = new Error('Could not find product.');
         error.statusCode = 404;
         throw error;
       }
-      res.status(200).json({ message: 'Post fetched', product: product });
+      res.status(200).json({ message: 'Product fetched', product: product });
     })
     .catch((err) => {
       if (!err.statusCode) {

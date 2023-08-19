@@ -9,6 +9,8 @@ const router = express.Router();
 // GET /feed/posts
 router.get('/', productController.geProducts);
 
+router.get('/:productId', productController.getProduct);
+
 // // POST /feed/post
 // router.post(
 //   '/post',
