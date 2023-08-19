@@ -5,7 +5,8 @@ import ErrorPage from './pages/ErrorPage';
 import LoginPage, { action as LoginAction } from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import HomePage from './pages/HomePage';
-import ProductDetails from './pages/ProductDetails';
+import { loader as HomePageLoader } from './pages/HomePage/loader';
+import ProductDetails from './pages/ProductDetails/ProductDetails';
 import CheckOutPage from './pages/CheckOutPage';
 import LastStepCheckOutPage from './pages/LastStepCheckOutPage';
 
@@ -14,8 +15,9 @@ const router = createBrowserRouter([
     path: `${ROUTES.HOME}`,
     element: <RootLayout />,
     errorElement: <ErrorPage />,
+
     children: [
-      { index: true, element: <HomePage /> },
+      { index: true, element: <HomePage />, loader: HomePageLoader },
       {
         path: `${ROUTES.LOGIN}`,
         element: <LoginPage />,

@@ -24,8 +24,8 @@ const Main = ({ books }) => {
       <BooksList>
         {currentItems &&
           currentItems.map((book) => (
-            <Link to={`/product/${book.id}`}>
-              <BookItem key={book.id} BookInfo={book} />
+            <Link key={book._id} to={`/product/${book._id}`}>
+              <BookItem BookInfo={book} />
             </Link>
           ))}
       </BooksList>
