@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
+import { redirect, useSubmit, Form } from 'react-router-dom';
+import * as ROUTES from '../constants/routes';
 
 const LoginPage = () => {
+  const submit = useSubmit();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [formValidity, setFormValidity] = useState({
@@ -24,8 +27,10 @@ const LoginPage = () => {
       return;
     }
 
-    //fetch login
-
+    submit(
+      { email: email, password: password },
+      { method: 'POST', encType: 'application/json' }
+    );
     setEmail('');
     setPassword('');
     setFormValidity({ emailValid: true, passwordValid: true });
@@ -33,7 +38,8 @@ const LoginPage = () => {
   return (
     <Container>
       <h1>Đăng nhập</h1>
-      <Form onSubmit={SubmitHandler}>
+
+      <FormBlock onSubmit={SubmitHandler}>
         <InputBlock>
           <Label htmlFor="email">Email</Label>
           <Input
@@ -67,10 +73,15 @@ const LoginPage = () => {
           )}
         </InputBlock>
         <Button type="submit">Đăng nhập</Button>
-      </Form>
+      </FormBlock>
     </Container>
   );
 };
+
+export async function action({ request }) {
+  const data = await request.json();
+  console.log(data);
+}
 
 const Container = styled.div`
   max-width: 1230px;
@@ -79,7 +90,8 @@ const Container = styled.div`
   padding: 30px;
   text-align: center;
 `;
-const Form = styled.form`
+
+const FormBlock = styled.form`
   max-width: 318px;
   margin: 0 auto;
   padding: 24px 8px 8px;
@@ -90,6 +102,7 @@ const Form = styled.form`
     width: 100vh;
   }
 `;
+
 const Input = styled.input`
   height: 30px;
   padding: 4px 17px;
@@ -103,6 +116,7 @@ const Label = styled.label`
   text-align: left;
   font-weight: 600;
 `;
+
 const InputBlock = styled.div`
   display: flex;
   flex-direction: column;
@@ -111,6 +125,7 @@ const InputBlock = styled.div`
   margin-bottom: 20px;
   position: relative;
 `;
+
 const Button = styled.button`
   padding: 8px 0;
   margin: 30px auto 8px;

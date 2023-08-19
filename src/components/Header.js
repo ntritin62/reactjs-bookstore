@@ -180,6 +180,7 @@ const User = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
+  gap: 6px;
 
   &:hover {
     ${Dropdown} {

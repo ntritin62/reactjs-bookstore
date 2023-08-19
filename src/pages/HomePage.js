@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import LeftSide from '../components/Category';
 import Main from '../components/Main';
+import { useLoaderData } from 'react-router-dom';
 
 const DUMMY_BOOKS = [
   {
