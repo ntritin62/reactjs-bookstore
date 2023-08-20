@@ -1,10 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { useSelector } from 'react-redux';
 import ProductCartItem from '../components/ProductCartItem';
 import * as ROUTES from '../constants/routes';
-
+const VND = new Intl.NumberFormat('vi-VN', {
+  style: 'currency',
+  currency: 'VND',
+});
 const CheckOutPage = () => {
+  const cartItems = useSelector((state) => state.cart.products);
+  const cartPrice = useSelector((state) => state.cart.totalPrice);
+
   return (
     <Container>
       <h1>GIỎ HÀNG</h1>
@@ -15,14 +22,15 @@ const CheckOutPage = () => {
             <div>Thành tiền</div>
           </Header>
           <ProductCartList>
-            <ProductCartItem />
-            <ProductCartItem />
-            <ProductCartItem />
+            {cartItems.map((item) => {
+              return <ProductCartItem key={item._id} product={item} />;
+            })}
           </ProductCartList>
         </LeftSide>
         <RightSide>
           <TotalPrice>
-            <span>Tổng Số Tiền</span> 29.750 đ
+            <span>Tổng Số Tiền</span>
+            {VND.format(cartPrice)}
           </TotalPrice>
           <Link to={ROUTES.LASTSTEPCHECKOUT}>
             <CheckOutBtn>thanh toán</CheckOutBtn>

@@ -1,34 +1,46 @@
 import React from 'react';
 import { styled } from 'styled-components';
-const ProductCartItem = () => {
+import {
+  incrementInCart,
+  decrementInCart,
+  removeFromCart,
+} from '../redux/cartSlice';
+import { useDispatch } from 'react-redux';
+const VND = new Intl.NumberFormat('vi-VN', {
+  style: 'currency',
+  currency: 'VND',
+});
+const ProductCartItem = ({ product }) => {
+  const dispatch = useDispatch();
   return (
     <Container>
-      <ProductImage
-        src="https://cdn0.fahasa.com/media/catalog/product//b/l/bluelock_bia_tap-12-1.jpg"
-        alt=""
-      />
+      <ProductImage src={product.imageURL} alt="" />
       <section>
         <ProductInfo>
-          <ProductTitle>BlueLock - Tập 12 - Tặng Kèm Card PVC</ProductTitle>
+          <ProductTitle>{product.title}</ProductTitle>
           <div>
-            <ProductNewPrice>29.750 đ</ProductNewPrice>
-            <ProductOldPrice>35.000 đ</ProductOldPrice>
+            <ProductNewPrice>{VND.format(product.price)}</ProductNewPrice>
+            <ProductOldPrice>{VND.format(product.oldprice)}</ProductOldPrice>
           </div>
         </ProductInfo>
         <ProductQty>
           <div>
             <button
-            //   onClick={() => setQuantity((prev) => prev - 1)}
-            //   disabled={quantity === 0}
+              onClick={() => {
+                dispatch(decrementInCart(product._id));
+              }}
+              disabled={product.quantity === 0}
             >
               <img
                 src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_minus2x.png"
                 alt=""
               />
             </button>
-            10
+            {product.quantity}
             <button
-            // onClick={() => setQuantity((prev) => prev + 1)}
+              onClick={() => {
+                dispatch(incrementInCart(product._id));
+              }}
             >
               <img
                 src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_plus2x.png"
@@ -37,9 +49,15 @@ const ProductCartItem = () => {
             </button>
           </div>
         </ProductQty>
-        <ProductTotalPrice>125.970 đ</ProductTotalPrice>
+        <ProductTotalPrice>
+          {VND.format(product.price * parseInt(product.quantity))}
+        </ProductTotalPrice>
       </section>
-      <DeleteButton>
+      <DeleteButton
+        onClick={() => {
+          dispatch(removeFromCart(product._id));
+        }}
+      >
         <img src="/images/trash-can.svg" alt="" />
       </DeleteButton>
     </Container>
@@ -108,6 +126,8 @@ const ProductQty = styled.div`
     width: 110px;
     padding: 0 10px;
     button {
+      cursor: pointer;
+      user-select: none;
       border: none;
       outline: none;
       background-color: transparent;
@@ -168,6 +188,7 @@ const DeleteButton = styled.button`
   translate: -50% -50%; */
   border: none;
   background: transparent;
+  cursor: pointer;
   img {
     width: 24px;
     height: 24px;

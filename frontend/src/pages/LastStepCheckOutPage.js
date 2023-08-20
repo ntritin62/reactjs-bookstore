@@ -5,7 +5,9 @@ import Payment from '../components/Payment';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import CartCheck from '../components/CartCheck';
+import { useSelector } from 'react-redux';
 const LastStepCheckOutPage = () => {
+  const cartItems = useSelector((state) => state.cart.products);
   return (
     <>
       <Container>
@@ -19,7 +21,9 @@ const LastStepCheckOutPage = () => {
         </LayOut>
         <LayOut>
           <Title>kiểm tra lại đơn hàng</Title>
-          <CartCheck />
+          {cartItems.map((item) => (
+            <CartCheck key={item._id} product={item} />
+          ))}
         </LayOut>
       </Container>
       <CTAActions>

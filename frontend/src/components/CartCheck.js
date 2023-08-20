@@ -1,45 +1,51 @@
 import React from 'react';
 import { styled } from 'styled-components';
+const VND = new Intl.NumberFormat('vi-VN', {
+  style: 'currency',
+  currency: 'VND',
+});
 
-const CartCheck = () => {
+const CartCheck = ({ product }) => {
   return (
     <>
       <Container>
         <div>
-          <Image
-            src="https://cdn0.fahasa.com/media/catalog/product//c/o/combo-1707202300.jpg"
-            alt=""
-          />
-          <Title>Món Quà Học Tập Tiện Lợi</Title>
+          <Image src={product.imageURL} alt="" />
+          <Title>{product.title}</Title>
         </div>
         <div>
           <Prices>
-            <NewPrice>46,899đ</NewPrice>
-            <OldPrice>93,500đ</OldPrice>
+            <NewPrice>{VND.format(product.price)}</NewPrice>
+            <OldPrice>{VND.format(product.oldprice)}</OldPrice>
           </Prices>
           <Quantity>
-            <span>Số lượng: </span>1
+            <span>Số lượng: </span>
+            {product.quantity}
           </Quantity>
-          <TotalPrice>46,899đ</TotalPrice>
+          <TotalPrice>
+            {' '}
+            {VND.format(product.price * parseInt(product.quantity))}
+          </TotalPrice>
         </div>
       </Container>
       <Mobile>
         <div>
-          <Image
-            src="https://cdn0.fahasa.com/media/catalog/product//c/o/combo-1707202300.jpg"
-            alt=""
-          />
+          <Image src={product.imageURL} alt="" />
         </div>
         <div>
-          <Title>Món Quà Học Tập Tiện Lợi</Title>
+          <Title>{product.title}</Title>
           <Prices>
-            <NewPrice>46,899đ</NewPrice>
-            <OldPrice>93,500đ</OldPrice>
+            <NewPrice>{VND.format(product.price)}</NewPrice>
+            <OldPrice>{VND.format(product.oldprice)}</OldPrice>
           </Prices>
           <Quantity>
-            <span>Số lượng: </span>1
+            <span>Số lượng: </span>
+            {product.quantity}
           </Quantity>
-          <TotalPrice>46,899đ</TotalPrice>
+          <TotalPrice>
+            {' '}
+            {VND.format(product.price * parseInt(product.quantity))}
+          </TotalPrice>
         </div>
       </Mobile>
     </>

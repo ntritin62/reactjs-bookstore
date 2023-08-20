@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { second } from 'reqc'
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../redux/cartSlice';
 import { styled } from 'styled-components';
 import * as ROUTES from '../../constants/routes';
 const VND = new Intl.NumberFormat('vi-VN', {
@@ -9,10 +10,12 @@ const VND = new Intl.NumberFormat('vi-VN', {
 });
 const ProductDetails = () => {
   const bookData = useLoaderData();
-  console.log(bookData);
-  const [quantity, setQuantity] = useState(0);
+  const dispatch = useDispatch();
+  const [quantity, setQuantity] = useState(1);
   const [modalIsShowed, setModalIsShowed] = useState(false);
   const addToCartHandler = () => {
+    const productData = { ...bookData, quantity: quantity };
+    dispatch(addToCart(productData));
     setModalIsShowed(true);
   };
   return (
@@ -21,9 +24,7 @@ const ProductDetails = () => {
         <MediaDetails>
           <ProductImg src={bookData.imageURL} alt="" />
           <ProductActions>
-            <button onClick={() => setModalIsShowed(true)}>
-              Thêm vào giỏ hàng
-            </button>
+            <button onClick={addToCartHandler}>Thêm vào giỏ hàng</button>
             <button>Mua ngay</button>
           </ProductActions>
         </MediaDetails>
@@ -39,7 +40,7 @@ const ProductDetails = () => {
             <div>
               <button
                 onClick={() => setQuantity((prev) => prev - 1)}
-                disabled={quantity === 0}
+                disabled={quantity === 1}
               >
                 <img
                   src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/ico_minus2x.png"
@@ -94,9 +95,7 @@ const ProductDetails = () => {
           </div>
         </QuantityActions>
         <ProductActions>
-          <button onClick={() => setModalIsShowed(true)}>
-            Thêm vào giỏ hàng
-          </button>
+          <button onClick={addToCartHandler}>Thêm vào giỏ hàng</button>
           <button>Mua ngay</button>
         </ProductActions>
       </Mobile>
