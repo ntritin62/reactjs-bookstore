@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
+import { second } from 'reqc'
 import { styled } from 'styled-components';
 import * as ROUTES from '../../constants/routes';
+const VND = new Intl.NumberFormat('vi-VN', {
+  style: 'currency',
+  currency: 'VND',
+});
 const ProductDetails = () => {
+  const bookData = useLoaderData();
+  console.log(bookData);
   const [quantity, setQuantity] = useState(0);
   const [modalIsShowed, setModalIsShowed] = useState(false);
+  const addToCartHandler = () => {
+    setModalIsShowed(true);
+  };
   return (
     <>
       <Container>
         <MediaDetails>
-          <ProductImg
-            src="https://cdn0.fahasa.com/media/catalog/product/8/9/8934974186205.jpg"
-            alt=""
-          />
+          <ProductImg src={bookData.imageURL} alt="" />
           <ProductActions>
             <button onClick={() => setModalIsShowed(true)}>
               Thêm vào giỏ hàng
@@ -21,11 +28,11 @@ const ProductDetails = () => {
           </ProductActions>
         </MediaDetails>
         <InfoDetails>
-          <ProductTitle>Chainsaw Man - Tập 10 - Tặng Kèm Lót Ly</ProductTitle>
+          <ProductTitle>{bookData.title}</ProductTitle>
           <ProductPrices>
-            <ProductNewPrice>38.250 đ </ProductNewPrice>
-            <ProductOldPrice>45.000 đ</ProductOldPrice>
-            <ProductSaleOff>-15%</ProductSaleOff>
+            <ProductNewPrice>{VND.format(bookData.price)}</ProductNewPrice>
+            <ProductOldPrice>{VND.format(bookData.oldprice)}</ProductOldPrice>
+            <ProductSaleOff>-{bookData.saleoff}%</ProductSaleOff>
           </ProductPrices>
           <QuantityActions>
             <span>Số lượng:</span>
@@ -55,10 +62,7 @@ const ProductDetails = () => {
           <Backdrop onClick={() => setModalIsShowed(false)} />
           <Modal>
             <p>Sản phẩm đã được thêm thành công vào giỏ hàng của bạn</p>
-            <img
-              src="https://cdn0.fahasa.com/media/catalog/product/8/9/8934974186205.jpg"
-              alt=""
-            />
+            <img src={bookData.imageURL} alt="" />
 
             <div>
               <button onClick={() => setModalIsShowed(false)}>Chọn thêm</button>

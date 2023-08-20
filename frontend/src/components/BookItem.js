@@ -8,7 +8,7 @@ const VND = new Intl.NumberFormat('vi-VN', {
 const BookItem = (props) => {
   return (
     <Container>
-      <BookImage src={props.BookInfo.imgURL} />
+      <BookImage src={props.BookInfo.imageURL} />
       <BookSale>{props.BookInfo.saleoff}%</BookSale>
 
       <BookTitle>{props.BookInfo.title}</BookTitle>
