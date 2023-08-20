@@ -1,3 +1,4 @@
+import { redirect } from 'react-router-dom';
 export async function action({ request }) {
   const data = await request.json();
   return fetch('http://localhost:8080/auth/signup', {
@@ -6,7 +7,11 @@ export async function action({ request }) {
     body: JSON.stringify(data),
   })
     .then((res) => {
-      return res.json();
+      if (res.status === 422) {
+        return res.json();
+      } else {
+        return redirect('/login');
+      }
     })
     .then((resData) => {
       console.log(resData);

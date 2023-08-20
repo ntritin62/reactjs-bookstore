@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
-import { useSubmit } from 'react-router-dom';
+import { useActionData, useSubmit } from 'react-router-dom';
 
 const SignUpPage = () => {
+  const error = useActionData();
+  console.log(error);
   const submit = useSubmit();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -53,6 +55,7 @@ const SignUpPage = () => {
     <Container>
       <h1>Đăng ký</h1>
       <Form onSubmit={SubmitHandler}>
+        {error && <ServerError>{error.data[0].msg}</ServerError>}
         <InputBlock>
           <Label htmlFor="name">Họ và tên</Label>
           <Input
@@ -187,6 +190,21 @@ const Error = styled.p`
   position: absolute;
   bottom: -35px;
   text-align: left;
+`;
+
+const ServerError = styled.div`
+  margin-bottom: 20px;
+  width: 100%;
+  background-color: #fce4e4;
+  border: 1px solid #fcc2c3;
+  float: left;
+  padding: 20px 30px;
+  color: #cc0033;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 20px;
+  text-shadow: 1px 1px rgba(250, 250, 250, 0.3);
 `;
 
 export default SignUpPage;

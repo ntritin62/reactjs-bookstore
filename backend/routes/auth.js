@@ -20,7 +20,7 @@ router.put(
         });
       })
       .normalizeEmail(),
-    body('password').trim().isLength({ min: 5 }),
+    body('password').trim().isLength({ min: 6 }),
     body('name').trim().not().isEmpty(),
     body('rePassword')
       .trim()
