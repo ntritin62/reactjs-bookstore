@@ -12,19 +12,20 @@ import ProductDetails from './pages/ProductDetails';
 import { loader as ProductDetailsLoader } from './pages/ProductDetails/loader';
 import CheckOutPage from './pages/CheckOutPage';
 import LastStepCheckOutPage from './pages/LastStepCheckOutPage';
+import { loader as TokenLoader } from './util/auth';
+import { checkAuthLoader } from './util/auth';
 
 const router = createBrowserRouter([
   {
     path: `${ROUTES.HOME}`,
     element: <RootLayout />,
     errorElement: <ErrorPage />,
-
+    loader: TokenLoader,
     children: [
       { index: true, element: <HomePage />, loader: HomePageLoader },
       {
         path: `${ROUTES.LOGIN}`,
         element: <LoginPage />,
-        action: LoginAction,
       },
       {
         path: `${ROUTES.SIGNUP}`,
@@ -37,7 +38,11 @@ const router = createBrowserRouter([
         loader: ProductDetailsLoader,
       },
       { path: `${ROUTES.CHECKOUT}`, element: <CheckOutPage /> },
-      { path: `${ROUTES.LASTSTEPCHECKOUT}`, element: <LastStepCheckOutPage /> },
+      {
+        path: `${ROUTES.LASTSTEPCHECKOUT}`,
+        element: <LastStepCheckOutPage />,
+        loader: checkAuthLoader,
+      },
     ],
   },
 ]);

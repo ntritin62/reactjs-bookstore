@@ -3,7 +3,11 @@ import { styled } from 'styled-components';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import CheckOut from './CheckOut';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser } from '../redux/userSlice';
 const Header = () => {
+  const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
   return (
     <Container>
       <Inner>
@@ -22,18 +26,36 @@ const Header = () => {
           </Link>
           <User>
             <img src="/images/user.svg" alt="" />
-            <span>Tài khoản</span>
+            {Object.keys(user).length !== 0 && <span>{user.name}</span>}
+            {Object.keys(user).length === 0 && <span>Tài khoản</span>}
             <Dropdown>
-              <div>
-                <Link to={ROUTES.LOGIN}>
-                  <button>Đăng nhập</button>
-                </Link>
-              </div>
-              <div>
-                <Link to={ROUTES.SIGNUP}>
-                  <button>Đăng ký</button>
-                </Link>
-              </div>
+              {Object.keys(user).length !== 0 && (
+                <Account>
+                  <Link to="order">Đơn mua</Link>
+                  <span
+                    onClick={() => {
+                      localStorage.removeItem('token');
+                      dispatch(setUser({}));
+                    }}
+                  >
+                    Đăng xuất
+                  </span>
+                </Account>
+              )}
+              {Object.keys(user).length === 0 && (
+                <>
+                  <div>
+                    <Link to={ROUTES.LOGIN}>
+                      <button>Đăng nhập</button>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link to={ROUTES.SIGNUP}>
+                      <button>Đăng ký</button>
+                    </Link>
+                  </div>
+                </>
+              )}
             </Dropdown>
           </User>
         </Nav>
@@ -49,6 +71,27 @@ const Container = styled.div`
   right: 0;
   background-color: #fff;
   z-index: 1000;
+`;
+
+const Account = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-weight: bold;
+  a,
+  span {
+    transition: color 0.2s;
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: solid 0.5px #000;
+  }
+  a:hover,
+  span:hover {
+    color: #004aad;
+  }
+  span {
+    border-bottom: none;
+  }
 `;
 
 const Inner = styled.div`

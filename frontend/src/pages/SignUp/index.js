@@ -4,7 +4,6 @@ import { useActionData, useSubmit } from 'react-router-dom';
 
 const SignUpPage = () => {
   const error = useActionData();
-  console.log(error);
   const submit = useSubmit();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

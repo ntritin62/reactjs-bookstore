@@ -14,7 +14,6 @@ export async function action({ request }) {
       }
     })
     .then((resData) => {
-      console.log(resData);
       return resData;
     })
     .catch((err) => {

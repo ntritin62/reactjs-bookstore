@@ -72,3 +72,20 @@ exports.login = (req, res, next) => {
       next(err);
     });
 };
+
+exports.getUser = (req, res, next) => {
+  User.findById(req.userId)
+    .select('-password -_id')
+    .then((user) => {
+      res.status(200).json({
+        message: 'Fetched user successfully',
+        user: user,
+      });
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      next(err);
+    });
+};

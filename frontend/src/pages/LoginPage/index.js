@@ -1,18 +1,31 @@
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
-import { redirect, useSubmit, Form, useActionData } from 'react-router-dom';
+import {
+  redirect,
+  useSubmit,
+  Form,
+  useActionData,
+  useNavigate,
+} from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/userSlice';
+import { loader as TokenLoader } from '../../util/auth';
+import { getAuthToken } from '../../util/auth';
 
 const LoginPage = () => {
-  const error = useActionData();
-  const submit = useSubmit();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [error, setError] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [formValidity, setFormValidity] = useState({
     emailValid: true,
     passwordValid: true,
   });
-  const SubmitHandler = (event) => {
+
+  const SubmitHandler = async (event) => {
     event.preventDefault();
     const enteredEmailIsValid = email.match(
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -27,14 +40,48 @@ const LoginPage = () => {
     if (!formIsValid) {
       return;
     }
+    let response;
 
-    submit(
-      { email: email, password: password },
-      { method: 'POST', encType: 'application/json' }
-    );
-    setEmail('');
-    setPassword('');
-    setFormValidity({ emailValid: true, passwordValid: true });
+    fetch('http://localhost:8080/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, password: password }),
+    })
+      .then((res) => {
+        response = res;
+        return res.json();
+      })
+      .then((resData) => {
+        if (response.status === 401) {
+          setError(resData);
+          setEmail('');
+          setPassword('');
+          setFormValidity({ emailValid: true, passwordValid: true });
+        } else {
+          localStorage.setItem('token', resData.token);
+          return resData.token;
+        }
+      })
+      .then((token) => {
+        return fetch('http://localhost:8080/auth/user', {
+          headers: {
+            Authorization: 'Bearer ' + token,
+          },
+        });
+      })
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error('Failed to fetch user.');
+        }
+        return res.json();
+      })
+      .then((resData) => {
+        dispatch(setUser(resData.user));
+        navigate(-1);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <Container>

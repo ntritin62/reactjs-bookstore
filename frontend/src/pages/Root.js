@@ -1,8 +1,20 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Outlet, useLoaderData } from 'react-router-dom';
 import Header from '../components/Header';
 import ErrorPage from './ErrorPage';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../redux/userSlice';
+
 const RootLayout = () => {
+  const user = useLoaderData();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (user) {
+      dispatch(setUser(user));
+    }
+  }, []);
+
   return (
     <>
       <Header />

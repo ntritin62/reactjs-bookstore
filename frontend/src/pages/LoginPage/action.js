@@ -1,4 +1,5 @@
 import { redirect } from 'react-router-dom';
+
 export async function action({ request }) {
   let response;
   const data = await request.json();
@@ -12,12 +13,13 @@ export async function action({ request }) {
       return res.json();
     })
     .then((resData) => {
-      if (!response.ok) {
+      console.log(response);
+      if (response.status === 401) {
         console.log(resData);
         return resData;
       } else {
         localStorage.setItem('token', resData.token);
-        return redirect('../');
+        return redirect('/');
       }
     })
     .catch((err) => {
