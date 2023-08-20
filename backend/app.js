@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 
 const productRoutes = require('./routes/product');
-// const authRoutes = require('./routes/auth');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 
@@ -49,7 +49,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/products', productRoutes);
-// app.use('/auth', authRoutes);
+app.use('/auth', authRoutes);
 
 app.use((error, req, res, next) => {
   console.log(error);
