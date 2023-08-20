@@ -3,7 +3,8 @@ import * as ROUTES from './constants/routes';
 import RootLayout from './pages/Root';
 import ErrorPage from './pages/ErrorPage';
 import LoginPage, { action as LoginAction } from './pages/LoginPage';
-import SignUpPage from './pages/SignUpPage';
+import SignUpPage from './pages/SignUp';
+import { action as SignUpAction } from './pages/SignUp/action';
 import HomePage from './pages/HomePage';
 import { loader as HomePageLoader } from './pages/HomePage/loader';
 import ProductDetails from './pages/ProductDetails';
@@ -24,7 +25,11 @@ const router = createBrowserRouter([
         element: <LoginPage />,
         action: LoginAction,
       },
-      { path: `${ROUTES.SIGNUP}`, element: <SignUpPage /> },
+      {
+        path: `${ROUTES.SIGNUP}`,
+        element: <SignUpPage />,
+        action: SignUpAction,
+      },
       {
         path: 'product/:productID',
         element: <ProductDetails />,
