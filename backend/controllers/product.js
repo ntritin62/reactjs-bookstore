@@ -5,7 +5,7 @@ const { validationResult } = require('express-validator');
 
 const Product = require('../models/product');
 
-exports.geProducts = (req, res, next) => {
+exports.getProducts = (req, res, next) => {
   Product.find()
     .then((products) => {
       res.status(200).json({

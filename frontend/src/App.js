@@ -1,4 +1,8 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  redirect,
+  RouterProvider,
+} from 'react-router-dom';
 import * as ROUTES from './constants/routes';
 import RootLayout from './pages/Root';
 import ErrorPage from './pages/ErrorPage';
@@ -13,7 +17,7 @@ import { loader as ProductDetailsLoader } from './pages/ProductDetails/loader';
 import CheckOutPage from './pages/CheckOutPage';
 import LastStepCheckOutPage from './pages/LastStepCheckOutPage';
 import { loader as TokenLoader } from './util/auth';
-import { checkAuthLoader } from './util/auth';
+import { checkAuthLoader, getAuthToken } from './util/auth';
 
 const router = createBrowserRouter([
   {
@@ -26,11 +30,23 @@ const router = createBrowserRouter([
       {
         path: `${ROUTES.LOGIN}`,
         element: <LoginPage />,
+        loader: () => {
+          const token = getAuthToken();
+          if (token) {
+            return redirect('/');
+          } else return null;
+        },
       },
       {
         path: `${ROUTES.SIGNUP}`,
         element: <SignUpPage />,
         action: SignUpAction,
+        loader: () => {
+          const token = getAuthToken();
+          if (token) {
+            return redirect('/');
+          } else return null;
+        },
       },
       {
         path: 'product/:productID',

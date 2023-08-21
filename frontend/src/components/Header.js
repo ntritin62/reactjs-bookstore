@@ -26,10 +26,10 @@ const Header = () => {
           </Link>
           <User>
             <img src="/images/user.svg" alt="" />
-            {Object.keys(user).length !== 0 && <span>{user.name}</span>}
-            {Object.keys(user).length === 0 && <span>Tài khoản</span>}
+            {user && <span>{user.name}</span>}
+            {!user && <span>Tài khoản</span>}
             <Dropdown>
-              {Object.keys(user).length !== 0 && (
+              {user && (
                 <Account>
                   <Link to="order">Đơn mua</Link>
                   <span
@@ -42,7 +42,7 @@ const Header = () => {
                   </span>
                 </Account>
               )}
-              {Object.keys(user).length === 0 && (
+              {!user && (
                 <>
                   <div>
                     <Link to={ROUTES.LOGIN}>
