@@ -17,6 +17,10 @@ const orderSchema = new Schema(
       required: true,
       ref: 'User',
     },
+    isDelivered: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

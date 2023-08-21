@@ -5,7 +5,7 @@ import { styled } from 'styled-components';
 const SideBar = () => {
   return (
     <Container>
-      <img src="./images/logo.svg" alt="" />
+      <img src="/images/logo.svg" alt="" />
       <NavLink
         to="/admin/products"
         className={({ isActive }) => (isActive ? 'active' : '')}

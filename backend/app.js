@@ -8,6 +8,7 @@ const multer = require('multer');
 const productRoutes = require('./routes/product');
 const authRoutes = require('./routes/auth');
 const shopRoutes = require('./routes/shop');
+const adminRoutes = require('./routes/admin');
 
 const app = express();
 
@@ -52,6 +53,7 @@ app.use((req, res, next) => {
 app.use('/products', productRoutes);
 app.use('/auth', authRoutes);
 app.use('/shop', shopRoutes);
+app.use('/admin', adminRoutes);
 
 app.use((error, req, res, next) => {
   console.log(error);
