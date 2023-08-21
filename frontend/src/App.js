@@ -24,6 +24,7 @@ import AdminLayout from './pages/Admin/AdminLayout';
 import AdminProducts from './pages/Admin/AdminProducts';
 import AdminOrders from './pages/Admin/AdminOrders';
 import { loader as AdminOrdersLoader } from './pages/Admin/AdminOrders/loader';
+import { loader as AdminProductsLoader } from './pages/Admin/AdminProducts/loader';
 
 const router = createBrowserRouter([
   {
@@ -80,6 +81,7 @@ const router = createBrowserRouter([
       {
         path: '/admin/products',
         element: <AdminProducts />,
+        loader: AdminProductsLoader,
       },
       {
         path: '/admin/orders',
