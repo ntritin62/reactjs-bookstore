@@ -20,6 +20,9 @@ import { loader as TokenLoader } from './util/auth';
 import { checkAuthLoader, getAuthToken } from './util/auth';
 import OrdersPage from './pages/OrdersPage';
 import { loader as OrderLoader } from './pages/OrdersPage/loader';
+import AdminLayout from './pages/Admin/AdminLayout';
+import AdminProducts from './pages/Admin/AdminProducts';
+import AdminOrders from './pages/Admin/AdminOrders';
 
 const router = createBrowserRouter([
   {
@@ -66,6 +69,14 @@ const router = createBrowserRouter([
         element: <OrdersPage />,
         loader: OrderLoader,
       },
+    ],
+  },
+  {
+    path: `${ROUTES.ADMIN}`,
+    element: <AdminLayout />,
+    children: [
+      { path: '/admin/products', element: <AdminProducts /> },
+      { path: '/admin/orders', element: <AdminOrders /> },
     ],
   },
 ]);
