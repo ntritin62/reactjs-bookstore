@@ -1,56 +1,9 @@
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
 
-const UserForm = () => {
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [address, setAddress] = useState('');
-  const [formValidity, setFormValidity] = useState({
-    emailValid: true,
-    nameValid: true,
-    addressValid: true,
-    phoneNumberValid: true,
-  });
-  const SubmitHandler = (event) => {
-    event.preventDefault();
-    const enteredEmailIsValid = email.match(
-      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
-    const enteredNameIsValid = name.length !== '';
-    const enteredAddressIsValid = address.length !== '';
-    const enteredPhoneNumberIsValid = phoneNumber.length !== '';
-
-    setFormValidity({
-      emailValid: enteredEmailIsValid,
-      addressValid: enteredAddressIsValid,
-      nameValid: enteredNameIsValid,
-      phoneNumberValid: enteredPhoneNumberIsValid,
-    });
-    const formIsValid =
-      enteredEmailIsValid &&
-      enteredAddressIsValid &&
-      enteredNameIsValid &&
-      enteredPhoneNumberIsValid;
-    if (!formIsValid) {
-      return;
-    }
-
-    //fetch login
-
-    setEmail('');
-    setAddress('');
-    setName('');
-    setPhoneNumber('');
-    setFormValidity({
-      emailValid: true,
-      nameValid: true,
-      addressValid: true,
-      phoneNumberValid: true,
-    });
-  };
+const UserForm = ({ setAddress, setName, setPhoneNumber, submitHandler }) => {
   return (
-    <Form onSubmit={SubmitHandler}>
+    <Form onSubmit={submitHandler}>
       <InputBlock>
         <Label htmlFor="name">Họ và tên người nhận</Label>
         <Input
@@ -58,30 +11,12 @@ const UserForm = () => {
           placeholder="Nhập họ và tên người nhận"
           id="name"
           name="name"
-          value={name}
           onChange={(e) => {
             setName(e.target.value);
           }}
           autoComplete="off"
+          required
         />
-        {!formValidity.nameValid && (
-          <Error>Thông tin này không thể để trống</Error>
-        )}
-      </InputBlock>
-      <InputBlock>
-        <Label htmlFor="email">Email</Label>
-        <Input
-          type="text"
-          placeholder="Nhập email"
-          id="email"
-          name="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-          autoComplete="off"
-        />
-        {!formValidity.emailValid && <Error>Vui lòng nhập đúng email</Error>}
       </InputBlock>
       <InputBlock>
         <Label htmlFor="phoneNumber">Số điện thoại</Label>
@@ -90,15 +25,12 @@ const UserForm = () => {
           placeholder="Ví dụ: 0123456xxx (10 ký tự số)"
           id="phoneNumber"
           name="phoneNumber"
-          value={phoneNumber}
           onChange={(e) => {
             setPhoneNumber(e.target.value);
           }}
           autoComplete="off"
+          required
         />
-        {!formValidity.phoneNumberValid && (
-          <Error>Thông tin này không thể để trống</Error>
-        )}
       </InputBlock>
       <InputBlock>
         <Label htmlFor="address">Địa chỉ nhận hàng</Label>
@@ -108,14 +40,11 @@ const UserForm = () => {
           id="address"
           name="address"
           autoComplete="off"
-          value={address}
           onChange={(e) => {
             setAddress(e.target.value);
           }}
+          required
         />
-        {!formValidity.addressValid && (
-          <Error>Thông tin này không thể để trống</Error>
-        )}
       </InputBlock>
     </Form>
   );

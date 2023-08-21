@@ -4,7 +4,7 @@ const Payment = () => {
   return (
     <>
       <Form>
-        <Input type="radio" checked value="money" />
+        <Input type="radio" defaultChecked value="money" />
         <div></div>
         <Label>
           <svg

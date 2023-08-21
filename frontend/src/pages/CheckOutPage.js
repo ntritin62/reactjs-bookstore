@@ -12,10 +12,7 @@ const CheckOutPage = () => {
   const cartItems = useSelector((state) => state.cart.products);
   const cartPrice = useSelector((state) => state.cart.totalPrice);
   const user = useSelector((state) => state.user.user);
-  const checkoutHandler = () => {
-    if (user) {
-    }
-  };
+
   return (
     <Container>
       <h1>GIỎ HÀNG</h1>

@@ -1,19 +1,64 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import UserForm from '../components/UserForm';
 import Payment from '../components/Payment';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import CartCheck from '../components/CartCheck';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAuthToken } from '../util/auth';
+import { resetCart } from '../redux/cartSlice';
+
 const LastStepCheckOutPage = () => {
-  const cartItems = useSelector((state) => state.cart.products);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+  const [name, setName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [address, setAddress] = useState('');
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const receiverData = {
+      name: name,
+      phoneNumber: phoneNumber,
+      address: address,
+    };
+    const token = getAuthToken();
+    fetch('http://localhost:8080/shop/order', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      },
+      body: JSON.stringify({
+        receiver: receiverData,
+        cart: { products: cart.products, totalPrice: cart.totalPrice },
+      }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((resData) => {
+        dispatch(resetCart());
+        navigate('/');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <>
       <Container>
         <LayOut>
           <Title>địa chỉ nhận hàng</Title>
-          <UserForm />
+          <UserForm
+            setAddress={setAddress}
+            setName={setName}
+            setPhoneNumber={setPhoneNumber}
+            submitHandler={submitHandler}
+          />
         </LayOut>
         <LayOut>
           <Title>PHƯƠNG THỨC THANH TOÁN</Title>
@@ -21,7 +66,7 @@ const LastStepCheckOutPage = () => {
         </LayOut>
         <LayOut>
           <Title>kiểm tra lại đơn hàng</Title>
-          {cartItems.map((item) => (
+          {cart.products.map((item) => (
             <CartCheck key={item._id} product={item} />
           ))}
         </LayOut>
@@ -46,8 +91,7 @@ const LastStepCheckOutPage = () => {
             </svg>
             <span>Quay về giỏ hàng</span>
           </Link>
-
-          <button>Xác nhận thanh toán</button>
+          <button onClick={submitHandler}>Xác nhận thanh toán</button>
         </div>
       </CTAActions>
     </>

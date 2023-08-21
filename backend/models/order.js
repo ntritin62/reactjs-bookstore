@@ -3,12 +3,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const orderSchema = new Schema({
-  products: [
-    {
-      product: { type: Object, required: true },
-      quantity: { type: Number, required: true },
-    },
-  ],
+  cart: {
+    products: { type: Array, required: true },
+    totalPrice: { type: Number, required: true },
+  },
   receiver: {
     type: Object,
     required: true,

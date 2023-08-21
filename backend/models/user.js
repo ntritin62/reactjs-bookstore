@@ -19,18 +19,6 @@ const userSchema = new Schema({
     type: String,
     default: 'customer',
   },
-  cart: {
-    items: [
-      {
-        productId: {
-          type: Schema.Types.ObjectId,
-          ref: 'Product',
-          required: true,
-        },
-        quantity: { type: Number, required: true },
-      },
-    ],
-  },
 });
 
 userSchema.methods.clearCart = function () {
