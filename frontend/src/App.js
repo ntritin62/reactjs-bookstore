@@ -18,6 +18,8 @@ import CheckOutPage from './pages/CheckOutPage';
 import LastStepCheckOutPage from './pages/LastStepCheckOutPage';
 import { loader as TokenLoader } from './util/auth';
 import { checkAuthLoader, getAuthToken } from './util/auth';
+import OrdersPage from './pages/OrdersPage';
+import { loader as OrderLoader } from './pages/OrdersPage/loader';
 
 const router = createBrowserRouter([
   {
@@ -58,6 +60,11 @@ const router = createBrowserRouter([
         path: `${ROUTES.LASTSTEPCHECKOUT}`,
         element: <LastStepCheckOutPage />,
         loader: checkAuthLoader,
+      },
+      {
+        path: `${ROUTES.ORDERS}`,
+        element: <OrdersPage />,
+        loader: OrderLoader,
       },
     ],
   },

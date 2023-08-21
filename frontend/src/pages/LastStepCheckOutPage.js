@@ -41,7 +41,7 @@ const LastStepCheckOutPage = () => {
       })
       .then((resData) => {
         dispatch(resetCart());
-        navigate('/');
+        navigate('/orders');
       })
       .catch((err) => {
         console.log(err);

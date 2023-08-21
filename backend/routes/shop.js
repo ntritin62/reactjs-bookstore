@@ -6,6 +6,8 @@ const isAuth = require('../middleware/is-auth');
 
 const router = express.Router();
 
+router.get('/order', isAuth, shopController.getOrders);
+
 router.post('/order', isAuth, shopController.postOrder);
 
 module.exports = router;

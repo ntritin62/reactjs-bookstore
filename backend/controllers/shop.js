@@ -26,3 +26,23 @@ exports.postOrder = (req, res, next) => {
       next(err);
     });
 };
+
+exports.getOrders = (req, res, next) => {
+  Order.find({ userId: req.userId })
+    .select('-userId')
+    .sort({
+      createdAt: -1,
+    })
+    .then((orders) => {
+      res.status(200).json({
+        message: 'Fetched orders successfully',
+        orders: orders,
+      });
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      next(err);
+    });
+};

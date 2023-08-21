@@ -31,11 +31,11 @@ const Header = () => {
             <Dropdown>
               {user && (
                 <Account>
-                  <Link to="order">Đơn mua</Link>
+                  <Link to={ROUTES.ORDERS}>Đơn mua</Link>
                   <span
                     onClick={() => {
                       localStorage.removeItem('token');
-                      dispatch(setUser({}));
+                      dispatch(setUser(null));
                     }}
                   >
                     Đăng xuất
