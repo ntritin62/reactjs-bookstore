@@ -10,7 +10,7 @@ const CartCheck = ({ product }) => {
     <>
       <Container>
         <div>
-          <Image src={product.imageURL} alt="" />
+          <Image src={'http://localhost:8080/' + product.imageUrl} alt="" />
           <Title>{product.title}</Title>
         </div>
         <div>

@@ -14,7 +14,7 @@ const ProductCartItem = ({ product }) => {
   const dispatch = useDispatch();
   return (
     <Container>
-      <ProductImage src={product.imageURL} alt="" />
+      <ProductImage src={'http://localhost:8080/' + product.imageUrl} alt="" />
       <section>
         <ProductInfo>
           <ProductTitle>{product.title}</ProductTitle>

@@ -60,7 +60,10 @@ const AdminOrders = () => {
             <ProductList>
               {order.cart.products.map((product) => (
                 <ProductItem key={product._id}>
-                  <img src={product.imageURL} alt="" />
+                  <img
+                    src={'http://localhost:8080/' + product.imageUrl}
+                    alt=""
+                  />
                   <ProductInfo>
                     <span>{product.title}</span>
                     <span>Số lượng: {product.quantity}</span>
@@ -93,6 +96,8 @@ export default AdminOrders;
 const Container = styled.div`
   grid-area: main;
   padding: 100px 20px;
+  width: 80%;
+  margin: 0 auto;
 `;
 
 const OrdersItem = styled.div`

@@ -2,38 +2,17 @@ const express = require('express');
 const { body } = require('express-validator');
 
 const productController = require('../controllers/product');
-// const isAuth = require('../middleware/is-auth');
 
 const router = express.Router();
 
-// GET /feed/posts
 router.get('/', productController.getProducts);
 
 router.get('/:productId', productController.getProduct);
 
-// // POST /feed/post
-// router.post(
-//   '/post',
-//   isAuth,
-//   [
-//     body('title').trim().isLength({ min: 5 }),
-//     body('content').trim().isLength({ min: 5 }),
-//   ],
-//   feedController.createPost
-// );
+router.post('/post-product', productController.createProduct);
 
-// router.get('/post/:postId', isAuth, feedController.getPost);
+router.put('/update-product/:productId', productController.updateProduct);
 
-// router.put(
-//   '/post/:postId',
-//   isAuth,
-//   [
-//     body('title').trim().isLength({ min: 5 }),
-//     body('content').trim().isLength({ min: 5 }),
-//   ],
-//   feedController.updatePost
-// );
-
-// router.delete('/post/:postId', isAuth, feedController.deletePost);
+router.delete('/delete-product/:productId', productController.deleteProduct);
 
 module.exports = router;

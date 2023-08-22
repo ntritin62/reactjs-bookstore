@@ -32,10 +32,16 @@ const OrdersPage = () => {
         <OrdersList>
           {orderData.map((order) => (
             <OrdersItem key={order._id}>
+              <OrderStatus isDelivered={order.isDelivered}>
+                {order.isDelivered ? 'đã giao' : 'chưa giao'}
+              </OrderStatus>
               <ProductList>
                 {order.cart.products.map((product) => (
                   <ProductItem key={product._id}>
-                    <img src={product.imageURL} alt="" />
+                    <img
+                      src={'http://localhost:8080/' + product.imageUrl}
+                      alt=""
+                    />
                     <ProductInfo>
                       <span>{product.title}</span>
                       <span>Số lượng: {product.quantity}</span>
@@ -138,7 +144,7 @@ const OrdersItem = styled.div`
   width: 100%;
   background: #fff;
   margin-bottom: 20px;
-  padding: 0 20px 20px;
+  padding: 20px 20px;
   border-radius: 5px;
 `;
 
@@ -190,4 +196,13 @@ const ReceiverInfo = styled.div`
 const OrderPrice = styled.div`
   font-size: 18px;
   font-weight: 500;
+`;
+
+const OrderStatus = styled.span`
+  display: block;
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: uppercase;
+  text-align: right;
+  color: ${(props) => (props.isDelivered ? 'green' : 'red')};
 `;

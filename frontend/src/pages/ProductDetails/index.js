@@ -22,7 +22,10 @@ const ProductDetails = () => {
     <>
       <Container>
         <MediaDetails>
-          <ProductImg src={bookData.imageURL} alt="" />
+          <ProductImg
+            src={'http://localhost:8080/' + bookData.imageUrl}
+            alt=""
+          />
           <ProductActions>
             <button onClick={addToCartHandler}>Thêm vào giỏ hàng</button>
             <button>Mua ngay</button>
@@ -63,7 +66,7 @@ const ProductDetails = () => {
           <Backdrop onClick={() => setModalIsShowed(false)} />
           <Modal>
             <p>Sản phẩm đã được thêm thành công vào giỏ hàng của bạn</p>
-            <img src={bookData.imageURL} alt="" />
+            <img src={'http://localhost:8080/' + bookData.imageUrl} alt="" />
 
             <div>
               <button onClick={() => setModalIsShowed(false)}>Chọn thêm</button>
@@ -134,6 +137,7 @@ const InfoDetails = styled.div``;
 const ProductImg = styled.img`
   max-width: 100%;
   max-height: 392px;
+  min-width: 392px;
 `;
 
 const ProductActions = styled.div`

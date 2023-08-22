@@ -7,6 +7,14 @@ const productSchema = new Schema({
     type: String,
     required: true,
   },
+  author: {
+    type: String,
+    required: true,
+  },
+  saleoff: {
+    type: String,
+    required: true,
+  },
   price: {
     type: Number,
     required: true,

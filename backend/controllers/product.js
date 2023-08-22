@@ -40,142 +40,116 @@ exports.getProduct = (req, res, next) => {
     });
 };
 
-// exports.createPost = (req, res, next) => {
-//   const errors = validationResult(req);
-//   console.log(errors);
-//   if (!errors.isEmpty()) {
-//     const error = new Error('Validation failed, entered data is incorrect.');
-//     error.statusCode = 422;
-//     throw error;
-//   }
-//   if (!req.file) {
-//     const error = new Error('No image provided.');
-//     error.statusCode = 422;
-//     throw error;
-//   }
+exports.createProduct = (req, res, next) => {
+  console.log(req.body);
+  if (!req.file) {
+    const error = new Error('No image provided.');
+    error.statusCode = 422;
+    throw error;
+  }
 
-//   const imageUrl = req.file.path;
-//   const title = req.body.title;
-//   const content = req.body.content;
-//   let creator;
-//   const post = new Post({
-//     title: title,
-//     content: content,
-//     imageUrl: imageUrl,
-//     creator: req.userId,
-//   });
-//   post
-//     .save()
-//     .then((result) => {
-//       return User.findById(req.userId);
-//     })
-//     .then((user) => {
-//       creator = user;
-//       user.posts.push(post);
-//       return user.save();
-//     })
-//     .then((result) => {
-//       res.status(201).json({
-//         message: 'Post created successfully!',
-//         post: post,
-//         creator: { _id: creator._id, name: creator.name },
-//       });
-//     })
-//     .catch((err) => {
-//       if (!err.statusCode) {
-//         err.statusCode = 500;
-//       }
-//       next(err);
-//     });
-// };
+  const imageUrl = req.file.path;
+  const title = req.body.title;
+  const author = req.body.author;
+  const category = req.body.category;
+  const oldprice = req.body.oldprice;
+  const saleoff = req.body.saleoff;
+  const newprice = req.body.price;
+  const product = new Product({
+    title: title,
+    author: author,
+    category: category,
+    imageUrl: imageUrl,
+    oldprice: oldprice,
+    price: newprice,
+    saleoff: saleoff,
+  });
+  product
+    .save()
+    .then((result) => {
+      res.status(201).json({
+        message: 'Post created successfully!',
+      });
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      next(err);
+    });
+};
 
-// exports.updatePost = (req, res, next) => {
-//   const postId = req.params.postId;
-//   const errors = validationResult(req);
-//   console.log(errors);
-//   if (!errors.isEmpty()) {
-//     const error = new Error('Validation failed, entered data is incorrect.');
-//     error.statusCode = 422;
-//     throw error;
-//   }
-//   const title = req.body.title;
-//   const content = req.body.content;
-//   let imageUrl = req.body.image;
-//   if (req.file) {
-//     imageUrl = req.file.path;
-//   }
-//   if (!imageUrl) {
-//     const error = new Error('No file picked');
-//     error.statusCode = 422;
-//     throw error;
-//   }
-//   Post.findById(postId)
-//     .then((post) => {
-//       if (!post) {
-//         const error = new Error('Could not find post.');
-//         error.statusCode = 404;
-//         throw error;
-//       }
-//       if (post.creator.toString() !== req.userId) {
-//         const error = new Error('Not authorized');
-//         error.statusCode = 403;
-//         throw error;
-//       }
-//       if (imageUrl !== post.imageUrl) {
-//         clearImage(post.imageUrl);
-//       }
-//       post.title = title;
-//       post.imageUrl = imageUrl;
-//       post.content = content;
-//       return post.save();
-//     })
-//     .then((result) => {
-//       res.status(200).json({ message: 'Post updated!', post: result });
-//     })
-//     .catch((err) => {
-//       if (!err.statusCode) {
-//         err.statusCode = 500;
-//       }
-//       next(err);
-//     });
-// };
+exports.updateProduct = (req, res, next) => {
+  const productId = req.params.productId;
+  const title = req.body.title;
+  const author = req.body.author;
+  const category = req.body.category;
+  const oldprice = req.body.oldprice;
+  const saleoff = req.body.saleoff;
+  const newprice = req.body.price;
+  let imageUrl = req.body.image;
 
-// exports.deletePost = (req, res, next) => {
-//   const postId = req.params.postId;
-//   Post.findById(postId)
-//     .then((post) => {
-//       if (!post) {
-//         const error = new Error('Could not find post.');
-//         error.statusCode = 404;
-//         throw error;
-//       }
-//       if (post.creator.toString() !== req.userId) {
-//         const error = new Error('Not authorized');
-//         error.statusCode = 403;
-//         throw error;
-//       }
-//       clearImage(post.imageUrl);
-//       return Post.findByIdAndRemove(postId);
-//     })
-//     .then((result) => {
-//       return User.findById(req.userId);
-//     })
-//     .then((user) => {
-//       user.posts.pull(postId);
-//       return user.save();
-//     })
-//     .then((result) => {
-//       res.status(200).json({ message: 'Deleted post.' });
-//     })
-//     .catch((err) => {
-//       if (!err.statusCode) {
-//         err.statusCode = 500;
-//       }
-//       next(err);
-//     });
-// };
+  if (req.file) {
+    imageUrl = req.file.path;
+  }
 
-// const clearImage = (filePath) => {
-//   filePath = path.join(__dirname, '..', filePath);
-//   fs.unlink(filePath, (err) => console.log(err));
-// };
+  Product.findById(productId)
+    .then((product) => {
+      if (!product) {
+        const error = new Error('Could not find product.');
+        error.statusCode = 404;
+        throw error;
+      }
+      if (!imageUrl) {
+        imageUrl = product.imageUrl;
+      }
+      if (imageUrl !== product.imageUrl) {
+        clearImage(product.imageUrl);
+      }
+      product.title = title;
+      product.imageUrl = imageUrl;
+      product.oldprice = oldprice;
+      product.price = newprice;
+      product.saleoff = saleoff;
+      product.category = category;
+      product.author = author;
+      return product.save();
+    })
+    .then((result) => {
+      res.status(200).json({ message: 'Product updated!', product: result });
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      next(err);
+    });
+};
+
+exports.deleteProduct = (req, res, next) => {
+  const productId = req.params.productId;
+  Product.findById(productId)
+    .then((product) => {
+      if (!product) {
+        const error = new Error('Could not find product.');
+        error.statusCode = 404;
+        throw error;
+      }
+      clearImage(product.imageUrl);
+      return Product.findByIdAndRemove(productId);
+    })
+    .then((result) => {
+      res.status(200).json({ message: 'Deleted product.' });
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      next(err);
+    });
+};
+
+const clearImage = (filePath) => {
+  filePath = path.join(__dirname, '..', filePath);
+  fs.unlink(filePath, (err) => console.log(err));
+};
