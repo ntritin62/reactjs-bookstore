@@ -27,7 +27,7 @@ Full-Stack Bookstore Web using MERN Stack.
 - Admin can add/edit/delete product
 - Admin can check orders
 
-## Sneak Peek of Home Page 🙈 :
+## Sneak Peek of Web Page 🙈 :
 
 ![home](https://github.com/ntritin62/reactjs-bookstore/assets/104788686/b5a1f93d-2be4-4867-8939-c819c7267421)
 
