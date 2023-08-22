@@ -29,7 +29,7 @@ Full-Stack Bookstore Web using MERN Stack.
 
 ## Sneak Peek of Home Page 🙈 :
 
-![home](https://user-images.githubusercontent.com/64949957/159116089-cfc2b4c5-dc7d-4d4b-a0c8-668f89ce5412.png)
+![home](https://github.com/ntritin62/reactjs-bookstore/assets/104788686/b5a1f93d-2be4-4867-8939-c819c7267421)
 
 <table>
   <tr>
