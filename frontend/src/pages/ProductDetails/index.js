@@ -34,7 +34,6 @@ const ProductDetails = () => {
           />
           <ProductActions>
             <button onClick={addToCartHandler}>Thêm vào giỏ hàng</button>
-
             <button
               onClick={() => {
                 addToCartHandler();
@@ -47,6 +46,9 @@ const ProductDetails = () => {
         </MediaDetails>
         <InfoDetails>
           <ProductTitle>{bookData.title}</ProductTitle>
+          <ProductAuthor>
+            <span>Tác giả:</span> {bookData.author}
+          </ProductAuthor>
           <ProductPrices>
             <ProductNewPrice>{VND.format(bookData.price)}</ProductNewPrice>
             <ProductOldPrice>{VND.format(bookData.oldprice)}</ProductOldPrice>
@@ -198,7 +200,7 @@ const ProductTitle = styled.h1`
   line-height: 1.5em;
   overflow-wrap: break-word;
   padding-bottom: 16px;
-  margin: 50px 0;
+  margin: 50px 0 0;
 `;
 
 const ProductPrices = styled.div`
@@ -303,7 +305,7 @@ const Modal = styled.div`
     button,
     a {
       width: 40%;
-      background-color: #2ee5ab;
+      background-color: #004aad;
       border: none;
       height: 25px;
       font-size: 15px;
@@ -370,5 +372,15 @@ const Mobile = styled.div`
         border: none;
       }
     }
+  }
+`;
+
+const ProductAuthor = styled.div`
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  span {
+    font-weight: 600;
+    font-size: 16px;
   }
 `;

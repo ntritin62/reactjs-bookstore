@@ -86,7 +86,8 @@ const Container = styled.div`
     }
 
     .selected .page-num {
-      background-color: #2ee5ab;
+      background-color: #004aad;
+      color: #fff;
     }
 
     .disabled .page-btn {
@@ -94,7 +95,7 @@ const Container = styled.div`
     }
 
     .page-btn {
-      background-color: #2ee5ab;
+      background-color: #004aad;
       display: inline-block;
       min-width: 100px;
       height: 30px;

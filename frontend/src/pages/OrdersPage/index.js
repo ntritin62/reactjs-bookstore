@@ -29,42 +29,50 @@ const OrdersPage = () => {
       </LeftSide>
       <RightSide>
         <h1>Đơn hàng của tôi</h1>
-        <OrdersList>
-          {orderData.map((order) => (
-            <OrdersItem key={order._id}>
-              <OrderStatus isDelivered={order.isDelivered}>
-                {order.isDelivered ? 'đã giao' : 'chưa giao'}
-              </OrderStatus>
-              <ProductList>
-                {order.cart.products.map((product) => (
-                  <ProductItem key={product._id}>
-                    <img
-                      src={'http://localhost:8080/' + product.imageUrl}
-                      alt=""
-                    />
-                    <ProductInfo>
-                      <span>{product.title}</span>
-                      <span>Số lượng: {product.quantity}</span>
-                    </ProductInfo>
-                    <ProductPrice>
-                      {VND.format(product.price * product.quantity)}
-                    </ProductPrice>
-                  </ProductItem>
-                ))}
-              </ProductList>
-              <OrderInfo>
-                <ReceiverInfo>
-                  <span>{order.receiver.name}</span>
-                  <span>Địa chỉ: {order.receiver.address}</span>
-                  <span>Số điện thoại: {order.receiver.phoneNumber}</span>
-                </ReceiverInfo>
-                <OrderPrice>
-                  Tổng tiền: {VND.format(order.cart.totalPrice)}
-                </OrderPrice>
-              </OrderInfo>
-            </OrdersItem>
-          ))}
-        </OrdersList>
+        {orderData.length === 0 && (
+          <NoProducts>
+            <img src="/images/no-order.svg" alt="" />
+            <span>Không có đơn hàng nào mới</span>
+          </NoProducts>
+        )}
+        {orderData.length !== 0 && (
+          <OrdersList>
+            {orderData.map((order) => (
+              <OrdersItem key={order._id}>
+                <OrderStatus isDelivered={order.isDelivered}>
+                  {order.isDelivered ? 'đã giao' : 'chưa giao'}
+                </OrderStatus>
+                <ProductList>
+                  {order.cart.products.map((product) => (
+                    <ProductItem key={product._id}>
+                      <img
+                        src={'http://localhost:8080/' + product.imageUrl}
+                        alt=""
+                      />
+                      <ProductInfo>
+                        <span>{product.title}</span>
+                        <span>Số lượng: {product.quantity}</span>
+                      </ProductInfo>
+                      <ProductPrice>
+                        {VND.format(product.price * product.quantity)}
+                      </ProductPrice>
+                    </ProductItem>
+                  ))}
+                </ProductList>
+                <OrderInfo>
+                  <ReceiverInfo>
+                    <span>{order.receiver.name}</span>
+                    <span>Địa chỉ: {order.receiver.address}</span>
+                    <span>Số điện thoại: {order.receiver.phoneNumber}</span>
+                  </ReceiverInfo>
+                  <OrderPrice>
+                    Tổng tiền: {VND.format(order.cart.totalPrice)}
+                  </OrderPrice>
+                </OrderInfo>
+              </OrdersItem>
+            ))}
+          </OrdersList>
+        )}
       </RightSide>
     </Container>
   );
@@ -80,7 +88,7 @@ const Container = styled.div`
   grid-template-columns: 1fr 6fr;
   column-gap: 30px;
   @media screen and (max-width: 991px) {
-    display: flex;
+    display: block;
   }
 `;
 
@@ -215,4 +223,29 @@ const OrderStatus = styled.span`
   text-transform: uppercase;
   text-align: right;
   color: ${(props) => (props.isDelivered ? 'green' : 'red')};
+`;
+
+const NoProducts = styled.div`
+  width: 100%;
+  /* margin-top: 90px; */
+  margin: 0 auto;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
+  img {
+    width: 150px;
+    height: 150px;
+  }
+  span {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  @media screen and (max-width: 991px) {
+    border-radius: 0;
+  }
 `;

@@ -106,6 +106,7 @@ const Inner = styled.div`
 
 const Logo = styled.img`
   height: 60px;
+  margin-left: 10px;
 `;
 
 const Search = styled.div`
