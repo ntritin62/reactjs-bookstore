@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import UserForm from '../components/UserForm';
 import Payment from '../components/Payment';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useRouteLoaderData } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import CartCheck from '../components/CartCheck';
 import { useDispatch, useSelector } from 'react-redux';

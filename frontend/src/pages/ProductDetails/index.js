@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
-import { Link, useLoaderData, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import {
+  Link,
+  useLoaderData,
+  useNavigate,
+  useRouteLoaderData,
+} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/cartSlice';
 import { styled } from 'styled-components';

@@ -279,7 +279,7 @@ const Toast = styled.div`
 `;
 
 const NoProducts = styled.div`
-  margin-top: 50px;
+  margin-top: 90px;
   height: 400px;
   display: flex;
   flex-direction: column;

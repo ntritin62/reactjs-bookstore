@@ -31,6 +31,9 @@ const Header = () => {
             <Dropdown>
               {user && (
                 <Account>
+                  {user.role === 'admin' && (
+                    <Link to={ROUTES.ADMIN}>Admin</Link>
+                  )}
                   <Link to={ROUTES.ORDERS}>Đơn mua</Link>
                   <span
                     onClick={() => {

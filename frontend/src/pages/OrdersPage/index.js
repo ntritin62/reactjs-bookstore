@@ -10,7 +10,7 @@ const VND = new Intl.NumberFormat('vi-VN', {
 
 const OrdersPage = () => {
   const orderData = useLoaderData();
-  console.log(orderData);
+
   const user = useSelector((state) => state.user.user);
 
   return (

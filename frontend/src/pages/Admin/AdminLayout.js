@@ -38,6 +38,7 @@ export function loader() {
         console.log(err);
       });
   }
+  return redirect('/');
 }
 
 const Container = styled.div`

@@ -156,10 +156,10 @@ const AdminProducts = () => {
               </select>
             </InputBlock>
             <InputBlock>
-              <Label htmlFor="oldprice">Giá cũ</Label>
+              <Label htmlFor="oldprice">Giá tiền</Label>
               <Input
                 type="number"
-                placeholder="Nhập tiêu đề"
+                placeholder="Nhập giá tiền "
                 id="oldprice"
                 name="oldprice"
                 value={oldprice || ''}
@@ -174,7 +174,7 @@ const AdminProducts = () => {
               <Label htmlFor="saleoff">Giảm giá</Label>
               <Input
                 type="number"
-                placeholder="Nhập tiêu đề"
+                placeholder="Nhập % giảm giá"
                 id="saleoff"
                 name="saleoff"
                 value={saleoff || ''}
@@ -185,10 +185,9 @@ const AdminProducts = () => {
               />
             </InputBlock>
             <InputBlock>
-              <Label htmlFor="newprice">Giá mới</Label>
+              <Label htmlFor="newprice">Giá khuyến mãi</Label>
               <Input
                 type="number"
-                placeholder="Nhập tiêu đề"
                 id="newprice"
                 name="newprice"
                 value={oldprice - oldprice * (saleoff / 100)}
@@ -430,10 +429,11 @@ const Input = styled.input`
 const Label = styled.label`
   font-size: 14px;
   color: #333333;
-  width: 80px;
+  width: 150px;
   padding: 4px;
   margin-bottom: 5px;
   text-align: left;
+  font-weight: 500;
 `;
 const InputBlock = styled.div`
   display: flex;
@@ -459,12 +459,37 @@ const Backdrop = styled.div`
   z-index: 9999;
 `;
 
-const SubmitButton = styled.button``;
+const SubmitButton = styled.button`
+  cursor: pointer;
+  width: 100px;
+  height: 40px;
+  background-color: #004aad;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 999px;
+  border: none;
+  &:hover {
+    opacity: 0.8;
+  }
+`;
 
-const CancelButton = styled.button``;
+const CancelButton = styled.button`
+  cursor: pointer;
+  width: 100px;
+  height: 40px;
+  background-color: #ddd;
+  color: #333;
+  font-weight: 600;
+  border-radius: 999px;
+  border: none;
+  &:hover {
+    opacity: 0.8;
+  }
+`;
 
 const FormActions = styled.div`
   display: flex;
+  gap: 40px;
 `;
 
 const Toast = styled.div`

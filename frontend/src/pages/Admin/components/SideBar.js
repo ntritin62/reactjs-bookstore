@@ -8,6 +8,7 @@ const SideBar = () => {
   return (
     <Container>
       <img src="/images/logo.svg" alt="" />
+      <h1>ADMIN</h1>
       <NavLink
         to="/admin/products"
         className={({ isActive }) => (isActive ? 'active' : '')}
@@ -44,6 +45,12 @@ const Container = styled.div`
   height: 100vh;
   padding: 20px 0;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  h1 {
+    color: #333333;
+    margin: 0;
+    margin-bottom: 50px;
+    font-size: 25px;
+  }
   img {
     width: 100px;
     height: 100px;
