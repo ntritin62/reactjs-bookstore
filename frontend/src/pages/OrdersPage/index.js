@@ -79,12 +79,18 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 6fr;
   column-gap: 30px;
+  @media screen and (max-width: 991px) {
+    display: flex;
+  }
 `;
 
 const LeftSide = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  @media screen and (max-width: 991px) {
+    display: none;
+  }
 `;
 
 const Account = styled.div`
@@ -184,6 +190,7 @@ const OrderInfo = styled.div`
 `;
 
 const ReceiverInfo = styled.div`
+  width: 300px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -196,6 +203,9 @@ const ReceiverInfo = styled.div`
 const OrderPrice = styled.div`
   font-size: 18px;
   font-weight: 500;
+  @media screen and (max-width: 991px) {
+    text-align: right;
+  }
 `;
 
 const OrderStatus = styled.span`

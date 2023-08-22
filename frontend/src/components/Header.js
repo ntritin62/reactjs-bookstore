@@ -14,12 +14,7 @@ const Header = () => {
         <Link to={ROUTES.HOME}>
           <Logo src="/images/logo.svg" alt="" />
         </Link>
-        {/* <Search>
-          <input type="text" placeholder="Tìm kiếm sản phẩm mong muốn..." />
-          <button>
-            <img src="/images/search-logo.svg" alt="" />
-          </button>
-        </Search> */}
+
         <Nav>
           <Link to={ROUTES.CHECKOUT}>
             <CheckOut />
@@ -35,14 +30,14 @@ const Header = () => {
                     <Link to={ROUTES.ADMIN}>Admin</Link>
                   )}
                   <Link to={ROUTES.ORDERS}>Đơn mua</Link>
-                  <span
+                  <Link
                     onClick={() => {
                       localStorage.removeItem('token');
                       dispatch(setUser(null));
                     }}
                   >
                     Đăng xuất
-                  </span>
+                  </Link>
                 </Account>
               )}
               {!user && (
@@ -87,6 +82,9 @@ const Account = styled.div`
     cursor: pointer;
     padding: 10px;
     border-bottom: solid 0.5px #000;
+  }
+  a:last-child {
+    border-bottom: none;
   }
   a:hover,
   span:hover {
