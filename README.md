@@ -41,7 +41,3 @@ Full-Stack Bookstore Web using MERN Stack.
     <td><img src="https://github.com/ntritin62/reactjs-bookstore/assets/104788686/21ebdf53-bdf1-4212-8dac-a33cc2cc9f0e" alt="mockups" /></td>
   </tr>
 </table>
-
-<h2>📬 Contact</h2>
-
-If you want to contact me, you can reach me through below handles.
