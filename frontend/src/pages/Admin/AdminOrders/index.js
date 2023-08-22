@@ -33,60 +33,70 @@ const AdminOrders = () => {
           </div>
         </Toast>
       )}
-
-      <OrdersList>
-        {ordersList.map((order) => (
-          <OrdersItem key={order._id}>
-            <button
-              onClick={() => {
-                fetch('http://localhost:8080/admin/update-order/' + order._id, {
-                  method: 'PUT',
-                })
-                  .then((res) => {
-                    return res.json();
-                  })
-                  .then((resData) => {
-                    const newOrders = ordersList.filter(
-                      (oldOrder) => order._id !== oldOrder._id
-                    );
-                    setOrdersList(newOrders);
-                    setToastShowing(true);
-                  })
-                  .catch((err) => {});
-              }}
-            >
-              GIAO HÀNG
-            </button>
-            <ProductList>
-              {order.cart.products.map((product) => (
-                <ProductItem key={product._id}>
-                  <img
-                    src={'http://localhost:8080/' + product.imageUrl}
-                    alt=""
-                  />
-                  <ProductInfo>
-                    <span>{product.title}</span>
-                    <span>Số lượng: {product.quantity}</span>
-                  </ProductInfo>
-                  <ProductPrice>
-                    {VND.format(product.price * product.quantity)}
-                  </ProductPrice>
-                </ProductItem>
-              ))}
-            </ProductList>
-            <OrderInfo>
-              <ReceiverInfo>
-                <span>{order.receiver.name}</span>
-                <span>Địa chỉ: {order.receiver.address}</span>
-                <span>Số điện thoại: {order.receiver.phoneNumber}</span>
-              </ReceiverInfo>
-              <OrderPrice>
-                Tổng tiền: {VND.format(order.cart.totalPrice)}
-              </OrderPrice>
-            </OrderInfo>
-          </OrdersItem>
-        ))}
-      </OrdersList>
+      {ordersList.length === 0 && (
+        <NoProducts>
+          <img src="/images/no-order.svg" alt="" />
+          <span>Không có đơn hàng nào mới</span>
+        </NoProducts>
+      )}
+      {ordersList.length !== 0 && (
+        <OrdersList>
+          {ordersList.map((order) => (
+            <OrdersItem key={order._id}>
+              <button
+                onClick={() => {
+                  fetch(
+                    'http://localhost:8080/admin/update-order/' + order._id,
+                    {
+                      method: 'PUT',
+                    }
+                  )
+                    .then((res) => {
+                      return res.json();
+                    })
+                    .then((resData) => {
+                      const newOrders = ordersList.filter(
+                        (oldOrder) => order._id !== oldOrder._id
+                      );
+                      setOrdersList(newOrders);
+                      setToastShowing(true);
+                    })
+                    .catch((err) => {});
+                }}
+              >
+                GIAO HÀNG
+              </button>
+              <ProductList>
+                {order.cart.products.map((product) => (
+                  <ProductItem key={product._id}>
+                    <img
+                      src={'http://localhost:8080/' + product.imageUrl}
+                      alt=""
+                    />
+                    <ProductInfo>
+                      <span>{product.title}</span>
+                      <span>Số lượng: {product.quantity}</span>
+                    </ProductInfo>
+                    <ProductPrice>
+                      {VND.format(product.price * product.quantity)}
+                    </ProductPrice>
+                  </ProductItem>
+                ))}
+              </ProductList>
+              <OrderInfo>
+                <ReceiverInfo>
+                  <span>{order.receiver.name}</span>
+                  <span>Địa chỉ: {order.receiver.address}</span>
+                  <span>Số điện thoại: {order.receiver.phoneNumber}</span>
+                </ReceiverInfo>
+                <OrderPrice>
+                  Tổng tiền: {VND.format(order.cart.totalPrice)}
+                </OrderPrice>
+              </OrderInfo>
+            </OrdersItem>
+          ))}
+        </OrdersList>
+      )}
     </Container>
   );
 };
@@ -265,5 +275,25 @@ const Toast = styled.div`
     100% {
       right: 100%;
     }
+  }
+`;
+
+const NoProducts = styled.div`
+  margin-top: 50px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
+  img {
+    width: 150px;
+    height: 150px;
+  }
+  span {
+    font-size: 20px;
+    font-weight: 600;
   }
 `;
