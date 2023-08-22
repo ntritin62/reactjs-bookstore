@@ -1,6 +1,6 @@
-# Instagram MERN
+# Bookstore web MERN
 
-Full-Stack Book Store Web using MERN Stack.
+Full-Stack Bookstore Web using MERN Stack.
 
 ## 🖥️ Tech Stack
 
@@ -9,7 +9,7 @@ Full-Stack Book Store Web using MERN Stack.
 ![reactjs](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)&nbsp;
 ![react-router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)&nbsp;
 ![redux-toolkit](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)&nbsp;
-![styled-components](https://styled-components.com/nav-logo.png)&nbsp;
+![styled-components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=whit)&nbsp;
 
 **Backend:**
 
@@ -21,27 +21,11 @@ Full-Stack Book Store Web using MERN Stack.
 ## 🚀 Features
 
 - Login/Signup User Account
-- Login using Email/Username
-- Update Profile/Password User Account
-- Reset Password Mail using Sendgrid
-- Infinite Scroll Posts
-- Suggested Users
-- Search User Accounts by Name/Username
-- Follow/Unfollow Users
-- Like/Unlike Posts (Double Tap Like)
-- Comment on Post
-- Save/Unsave Post
-- Visit User Profiles
-- Share New Post
-- Skeleton Loaders
-- Delete Own Posts
-- Search Users to Chat
-- Add New Chat
-- Message Users
-- Typing | Online User Status
-- See Followers/Following of Users
-- Post Liked by Users
-- Emoji Enabled (Emoji Mart)
+- Add/Edit/Delete Product
+- Users can add products to their cart
+- Users can check their orders
+- Admin can add/edit/delete product
+- Admin can check orders
 
 ## Sneak Peek of Home Page 🙈 :
 
@@ -61,9 +45,3 @@ Full-Stack Book Store Web using MERN Stack.
 <h2>📬 Contact</h2>
 
 If you want to contact me, you can reach me through below handles.
-
-[![linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jigar-sable)
-
-© 2022 Jigar Sable
-
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
