@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { Outlet, useLoaderData } from 'react-router-dom';
+import { Outlet, redirect, useLoaderData, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import ErrorPage from './ErrorPage';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../redux/userSlice';
 
 const RootLayout = () => {
+  const navigate = useNavigate();
   const user = useLoaderData();
   const dispatch = useDispatch();
 
@@ -13,7 +14,7 @@ const RootLayout = () => {
     if (user) {
       dispatch(setUser(user));
     }
-  }, []);
+  }, [user]);
 
   return (
     <>

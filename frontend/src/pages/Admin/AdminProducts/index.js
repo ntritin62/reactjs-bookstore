@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import {
+  useLoaderData,
+  useNavigate,
+  useRouteLoaderData,
+} from 'react-router-dom';
 import { styled } from 'styled-components';
 const VND = new Intl.NumberFormat('vi-VN', {
   style: 'currency',
@@ -7,6 +11,7 @@ const VND = new Intl.NumberFormat('vi-VN', {
 });
 
 const AdminProducts = () => {
+  const navigate = useNavigate();
   const productsData = useLoaderData();
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
@@ -87,6 +92,7 @@ const AdminProducts = () => {
     setIsEdited(null);
     setImage('');
   };
+
   return (
     <Container>
       {toastShowing && (

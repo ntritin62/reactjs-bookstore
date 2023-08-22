@@ -121,7 +121,7 @@ const SignUpPage = () => {
             <Error>Nhập lại mật khẩu không khớp</Error>
           )}
         </InputBlock>
-        <Button type="submit">Đăng nhập</Button>
+        <Button type="submit">Đăng ký</Button>
       </Form>
     </Container>
   );
@@ -178,8 +178,9 @@ const Button = styled.button`
   height: 40px;
   border-radius: 5px;
   border: none;
-  background-color: #2ee5ab;
+  background-color: #004aad;
   font-weight: 900;
+  color: #fff;
 `;
 
 const Error = styled.p`

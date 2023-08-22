@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/cartSlice';
 import { styled } from 'styled-components';
@@ -9,6 +9,7 @@ const VND = new Intl.NumberFormat('vi-VN', {
   currency: 'VND',
 });
 const ProductDetails = () => {
+  const navigate = useNavigate();
   const bookData = useLoaderData();
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
@@ -28,7 +29,15 @@ const ProductDetails = () => {
           />
           <ProductActions>
             <button onClick={addToCartHandler}>Thêm vào giỏ hàng</button>
-            <button>Mua ngay</button>
+
+            <button
+              onClick={() => {
+                addToCartHandler();
+                navigate(ROUTES.CHECKOUT);
+              }}
+            >
+              Mua ngay
+            </button>
           </ProductActions>
         </MediaDetails>
         <InfoDetails>
@@ -99,7 +108,14 @@ const ProductDetails = () => {
         </QuantityActions>
         <ProductActions>
           <button onClick={addToCartHandler}>Thêm vào giỏ hàng</button>
-          <button>Mua ngay</button>
+          <button
+            onClick={() => {
+              addToCartHandler();
+              navigate(ROUTES.CHECKOUT);
+            }}
+          >
+            Mua ngay
+          </button>
         </ProductActions>
       </Mobile>
     </>
@@ -146,6 +162,7 @@ const ProductActions = styled.div`
   column-gap: 20px;
 
   button {
+    cursor: pointer;
     height: 44px;
     width: 220px;
     border-radius: 8px;
@@ -155,12 +172,12 @@ const ProductActions = styled.div`
   }
 
   button:first-child {
-    border: 2px solid #2ee5ab;
-    color: #2ee5ab;
+    border: 2px solid #004aad;
+    color: #004aad;
   }
 
   button:nth-child(2) {
-    background-color: #2ee5ab;
+    background-color: #004aad;
     color: #fff;
   }
 
@@ -246,7 +263,7 @@ const ProductSaleOff = styled.span`
   margin-left: 8px;
   padding: 4px;
   border-radius: 4px;
-  background-color: #2ee5ab;
+  background-color: #004aad;
   color: #fff;
   font-size: 1em;
   font-weight: 600;

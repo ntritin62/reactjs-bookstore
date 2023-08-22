@@ -6,6 +6,7 @@ import {
   Form,
   useActionData,
   useNavigate,
+  Link,
 } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import { useDispatch } from 'react-redux';
@@ -76,6 +77,9 @@ const LoginPage = () => {
         return res.json();
       })
       .then((resData) => {
+        if (resData.user.role === 'admin') {
+          return navigate('/admin');
+        }
         dispatch(setUser(resData.user));
         navigate(-1);
       })
@@ -120,6 +124,7 @@ const LoginPage = () => {
             <Error>Vui lòng nhập đúng mật khẩu (kí tự >= 6)</Error>
           )}
         </InputBlock>
+        <Link to={ROUTES.SIGNUP}>Bạn chưa có tài khoản?</Link>
         <Button type="submit">Đăng nhập</Button>
       </FormBlock>
     </Container>
@@ -141,6 +146,15 @@ const FormBlock = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  a {
+    text-align: left;
+    color: #15a6fb;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
   @media screen and (max-width: 991px) {
     width: 100vh;
   }
@@ -177,7 +191,8 @@ const Button = styled.button`
   height: 40px;
   border-radius: 5px;
   border: none;
-  background-color: #2ee5ab;
+  background-color: #004aad;
+  color: #fff;
   font-weight: 900;
 `;
 

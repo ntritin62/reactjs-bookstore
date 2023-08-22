@@ -14,12 +14,12 @@ const Header = () => {
         <Link to={ROUTES.HOME}>
           <Logo src="/images/logo.svg" alt="" />
         </Link>
-        <Search>
+        {/* <Search>
           <input type="text" placeholder="Tìm kiếm sản phẩm mong muốn..." />
           <button>
             <img src="/images/search-logo.svg" alt="" />
           </button>
-        </Search>
+        </Search> */}
         <Nav>
           <Link to={ROUTES.CHECKOUT}>
             <CheckOut />
@@ -201,7 +201,7 @@ const Dropdown = styled.div`
 
   div:first-child {
     button {
-      background: #2ee5ab;
+      background: #004aad;
       color: #fff;
     }
   }
@@ -209,8 +209,8 @@ const Dropdown = styled.div`
   div:last-child {
     button {
       background-color: transparent;
-      border: 2px solid #2ee5ab;
-      color: #2ee5ab;
+      border: 2px solid #004aad;
+      color: #004aad;
     }
   }
   @media screen and (max-width: 767px) {

@@ -1,8 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const SideBar = () => {
+  const navigate = useNavigate();
   return (
     <Container>
       <img src="/images/logo.svg" alt="" />
@@ -18,6 +20,14 @@ const SideBar = () => {
       >
         Đơn hàng
       </NavLink>
+      <button
+        onClick={() => {
+          localStorage.removeItem('token');
+          navigate('/');
+        }}
+      >
+        Đăng xuất
+      </button>
     </Container>
   );
 };
@@ -57,5 +67,18 @@ const Container = styled.div`
   .active {
     background-color: #004aad;
     color: #fff;
+  }
+  button {
+    cursor: pointer;
+    width: 50%;
+    height: 40px;
+    border-radius: 10px;
+    margin-top: auto;
+    margin-bottom: 50px;
+    background-color: #b22222;
+    color: #fff;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
   }
 `;

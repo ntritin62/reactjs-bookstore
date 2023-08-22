@@ -176,7 +176,8 @@ const CheckOutBtn = styled.button`
   text-transform: uppercase;
   font-weight: 700;
   font-size: 20px;
-  background-color: #2ee5ab;
+  background-color: #004aad;
+  color: #fff;
   cursor: pointer;
 `;
 

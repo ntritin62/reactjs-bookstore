@@ -103,9 +103,9 @@ exports.updateProduct = (req, res, next) => {
       if (!imageUrl) {
         imageUrl = product.imageUrl;
       }
-      if (imageUrl !== product.imageUrl) {
-        clearImage(product.imageUrl);
-      }
+      // if (imageUrl !== product.imageUrl) {
+      //   clearImage(product.imageUrl);
+      // }
       product.title = title;
       product.imageUrl = imageUrl;
       product.oldprice = oldprice;
@@ -135,7 +135,6 @@ exports.deleteProduct = (req, res, next) => {
         error.statusCode = 404;
         throw error;
       }
-      clearImage(product.imageUrl);
       return Product.findByIdAndRemove(productId);
     })
     .then((result) => {

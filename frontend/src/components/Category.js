@@ -153,7 +153,7 @@ const CategoryItem = styled.li`
   }
 
   input:checked + label {
-    color: #2ee5ab;
+    color: #004aad;
     font-weight: bold;
     font-size: 14px;
   }
@@ -178,7 +178,7 @@ const PriceItem = styled(CategoryItem)`
   }
 
   input:checked ~ span {
-    background: #2ee5ab;
+    background: #004aad;
   }
 
   span:after {
@@ -189,7 +189,7 @@ const PriceItem = styled(CategoryItem)`
     top: -1px;
     width: 2px;
     height: 5px;
-    border: solid #333;
+    border: solid #fff;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);

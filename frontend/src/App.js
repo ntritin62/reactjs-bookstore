@@ -20,7 +20,7 @@ import { loader as TokenLoader } from './util/auth';
 import { checkAuthLoader, getAuthToken } from './util/auth';
 import OrdersPage from './pages/OrdersPage';
 import { loader as OrderLoader } from './pages/OrdersPage/loader';
-import AdminLayout from './pages/Admin/AdminLayout';
+import AdminLayout, { loader as AdminLoader } from './pages/Admin/AdminLayout';
 import AdminProducts from './pages/Admin/AdminProducts';
 import AdminOrders from './pages/Admin/AdminOrders';
 import { loader as AdminOrdersLoader } from './pages/Admin/AdminOrders/loader';
@@ -77,6 +77,7 @@ const router = createBrowserRouter([
     path: `${ROUTES.ADMIN}`,
     element: <AdminLayout />,
     errorElement: <ErrorPage />,
+    loader: AdminLoader,
     children: [
       {
         path: '/admin/products',

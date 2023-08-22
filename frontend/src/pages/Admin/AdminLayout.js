@@ -1,7 +1,8 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, redirect } from 'react-router-dom';
 import SideBar from './components/SideBar';
 import { styled } from 'styled-components';
+import { getAuthToken } from '../../util/auth';
 const AdminLayout = () => {
   return (
     <Container>
@@ -12,6 +13,32 @@ const AdminLayout = () => {
 };
 
 export default AdminLayout;
+
+export function loader() {
+  const token = getAuthToken();
+  if (token) {
+    return fetch('http://localhost:8080/auth/user', {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error('Failed to fetch user.');
+        }
+        return res.json();
+      })
+      .then((resData) => {
+        if (resData.user.role === 'admin') {
+          return resData.user;
+        }
+        return redirect('/');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+}
 
 const Container = styled.div`
   display: grid;

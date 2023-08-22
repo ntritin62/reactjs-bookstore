@@ -23,7 +23,6 @@ export function loader() {
         return res.json();
       })
       .then((resData) => {
-        console.log(resData);
         return resData.user;
       })
       .catch((err) => {
