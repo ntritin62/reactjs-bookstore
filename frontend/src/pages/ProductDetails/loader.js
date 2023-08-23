@@ -1,6 +1,6 @@
 export async function loader({ params }) {
   const productId = params.productID;
-  return fetch('http://localhost:8080/products/' + productId)
+  return fetch(`${process.env.REACT_APP_BACKEND_URL}/products/${productId}`)
     .then((response) => {
       return response.json();
     })

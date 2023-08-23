@@ -5,7 +5,7 @@ export async function loader() {
   if (!token) {
     return redirect('/login');
   }
-  return fetch('http://localhost:8080/shop/order', {
+  return fetch(`${process.env.REACT_APP_BACKEND_URL}/shop/order`, {
     headers: {
       Authorization: 'Bearer ' + token,
     },

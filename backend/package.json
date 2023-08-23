@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "node MONGO_USER=tritin21 MONGO_PASSWORD=tin0602200239 MONGO_DEFAULT_DATABASE=bookstore app.js",
+    "start:dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",

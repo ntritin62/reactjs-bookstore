@@ -11,7 +11,7 @@ export function getAuthToken() {
 export function loader() {
   const token = getAuthToken();
   if (token) {
-    return fetch('http://localhost:8080/auth/user', {
+    return fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/user`, {
       headers: {
         Authorization: 'Bearer ' + token,
       },

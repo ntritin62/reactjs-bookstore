@@ -32,14 +32,14 @@ const OrdersPage = () => {
         {orderData.length === 0 && (
           <NoProducts>
             <img src="/images/no-order.svg" alt="" />
-            <span>Không có đơn hàng nào mới</span>
+            <span>Bạn không có đơn hàng nào</span>
           </NoProducts>
         )}
         {orderData.length !== 0 && (
           <OrdersList>
             {orderData.map((order) => (
               <OrdersItem key={order._id}>
-                <OrderStatus isDelivered={order.isDelivered}>
+                <OrderStatus isDelivered={order.isDelivered || false}>
                   {order.isDelivered ? 'đã giao' : 'chưa giao'}
                 </OrderStatus>
                 <ProductList>

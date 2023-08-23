@@ -151,6 +151,7 @@ const FormBlock = styled.form`
     color: #15a6fb;
     font-size: 14px;
     font-weight: 500;
+    margin-top: 20px;
   }
   a:hover {
     text-decoration: underline;
@@ -197,10 +198,12 @@ const Button = styled.button`
 `;
 
 const Error = styled.p`
+  font-size: 14px;
   font-weight: 600;
   color: red;
   position: absolute;
-  bottom: -35px;
+  bottom: -30px;
+  text-align: left;
 `;
 
 const ServerError = styled.div`

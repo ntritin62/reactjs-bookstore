@@ -1,5 +1,5 @@
 export async function loader() {
-  return fetch('http://localhost:8080/products')
+  return fetch(`${process.env.REACT_APP_BACKEND_URL}/products`)
     .then((response) => {
       return response.json();
     })

@@ -7,7 +7,6 @@ import * as ROUTES from './constants/routes';
 import RootLayout from './pages/Root';
 import ErrorPage from './pages/ErrorPage';
 import LoginPage from './pages/LoginPage';
-import { action as LoginAction } from './pages/LoginPage/action';
 import SignUpPage from './pages/SignUp';
 import { action as SignUpAction } from './pages/SignUp/action';
 import HomePage from './pages/HomePage';

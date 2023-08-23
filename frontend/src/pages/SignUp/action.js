@@ -1,7 +1,7 @@
 import { redirect } from 'react-router-dom';
 export async function action({ request }) {
   const data = await request.json();
-  return fetch('http://localhost:8080/auth/signup', {
+  return fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/signup`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),

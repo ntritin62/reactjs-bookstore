@@ -25,7 +25,7 @@ const LastStepCheckOutPage = () => {
       address: address,
     };
     const token = getAuthToken();
-    fetch('http://localhost:8080/shop/order', {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/order`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
