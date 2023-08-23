@@ -8,7 +8,7 @@ const Main = ({ books }) => {
   const [itemOffset, setItemOffset] = useState(0);
   const [currentItems, setCurrentItems] = useState(null);
   const [pageCount, setPageCount] = useState(0);
-  const itemsPerPage = 24;
+  const itemsPerPage = 12;
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(books.slice(itemOffset, endOffset));
