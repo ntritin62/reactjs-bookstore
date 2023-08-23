@@ -18,7 +18,6 @@
       ]
     }
   ],
-
   "builds": [
     {
       "src": "./index.js",
