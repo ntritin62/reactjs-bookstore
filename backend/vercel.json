@@ -1,6 +1,5 @@
 {
   "version": 2,
-
   "headers": [
     {
       "source": "/api/(.*)",
@@ -20,14 +19,15 @@
   ],
   "builds": [
     {
-      "src": "./index.js",
+      "src": "./app.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/"
+      "dest": "/",
+      "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
     }
   ]
 }
