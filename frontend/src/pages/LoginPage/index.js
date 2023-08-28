@@ -77,9 +77,6 @@ const LoginPage = () => {
         return res.json();
       })
       .then((resData) => {
-        // if (resData.user.role === 'admin') {
-        //   return navigate('/admin');
-        // }
         dispatch(setUser(resData.user));
         navigate(-1);
       })

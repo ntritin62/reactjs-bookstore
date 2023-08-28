@@ -15,7 +15,7 @@ router.put(
       .custom((value, { req }) => {
         return User.findOne({ email: value }).then((userDoc) => {
           if (userDoc) {
-            return Promise.reject('E-Mail address already exists!');
+            return Promise.reject('E-Mail này đã tồn tại');
           }
         });
       })
@@ -26,7 +26,7 @@ router.put(
       .trim()
       .custom((value, { req }) => {
         if (value !== req.body.password) {
-          throw new Error('Passwords have to match!');
+          throw new Error('Nhập lại mật khẩu sai');
         }
         return true;
       }),
