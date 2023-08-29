@@ -43,7 +43,7 @@ const LoginPage = () => {
     }
     let response;
 
-    fetch('http://localhost:8080/auth/login', {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: email, password: password }),
@@ -64,7 +64,7 @@ const LoginPage = () => {
         }
       })
       .then((token) => {
-        return fetch('http://localhost:8080/auth/user', {
+        return fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/user`, {
           headers: {
             Authorization: 'Bearer ' + token,
           },

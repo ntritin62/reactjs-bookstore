@@ -46,7 +46,7 @@ const OrdersPage = () => {
                   {order.cart.products.map((product) => (
                     <ProductItem key={product._id}>
                       <img
-                        src={'http://localhost:8080/' + product.imageUrl}
+                        src={`${process.env.REACT_APP_BACKEND_URL}/${product.imageUrl}`}
                         alt=""
                       />
                       <ProductInfo>

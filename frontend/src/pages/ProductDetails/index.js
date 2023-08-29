@@ -29,7 +29,7 @@ const ProductDetails = () => {
       <Container>
         <MediaDetails>
           <ProductImg
-            src={'http://localhost:8080/' + bookData.imageUrl}
+            src={`${process.env.REACT_APP_BACKEND_URL}/` + bookData.imageUrl}
             alt=""
           />
           <ProductActions>
@@ -82,7 +82,10 @@ const ProductDetails = () => {
           <Backdrop onClick={() => setModalIsShowed(false)} />
           <Modal>
             <p>Sản phẩm đã được thêm thành công vào giỏ hàng của bạn</p>
-            <img src={'http://localhost:8080/' + bookData.imageUrl} alt="" />
+            <img
+              src={`${process.env.REACT_APP_BACKEND_URL}/` + bookData.imageUrl}
+              alt=""
+            />
 
             <div>
               <button onClick={() => setModalIsShowed(false)}>Chọn thêm</button>

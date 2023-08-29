@@ -47,10 +47,14 @@ const AdminProducts = () => {
     formData.append('saleoff', saleoff);
     formData.append('image', image);
     if (isEdited) {
-      fetch('http://localhost:8080/products/update-product/' + isEdited, {
-        method: 'PUT',
-        body: formData,
-      })
+      fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/products/update-product/` +
+          isEdited,
+        {
+          method: 'PUT',
+          body: formData,
+        }
+      )
         .then((res) => {
           return res.json();
         })
@@ -65,7 +69,7 @@ const AdminProducts = () => {
           console.log(err);
         });
     } else {
-      fetch('http://localhost:8080/products/post-product', {
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/products/post-product`, {
         method: 'POST',
         body: formData,
       })
@@ -252,7 +256,10 @@ const AdminProducts = () => {
         <ProductsList>
           {products.map((product) => (
             <ProductItem key={product._id}>
-              <img src={'http://localhost:8080/' + product.imageUrl} alt="" />
+              <img
+                src={`${process.env.REACT_APP_BACKEND_URL}/${product.imageUrl}`}
+                alt=""
+              />
               <ProductInfo>
                 <ProductTitle>{product.title}</ProductTitle>
                 <ProductAuthor>Tác giả: {product.author}</ProductAuthor>

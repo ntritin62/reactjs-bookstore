@@ -46,7 +46,8 @@ const AdminOrders = () => {
               <button
                 onClick={() => {
                   fetch(
-                    'http://localhost:8080/admin/update-order/' + order._id,
+                    `${process.env.REACT_APP_BACKEND_URL}/admin/update-order/` +
+                      order._id,
                     {
                       method: 'PUT',
                     }
@@ -70,7 +71,7 @@ const AdminOrders = () => {
                 {order.cart.products.map((product) => (
                   <ProductItem key={product._id}>
                     <img
-                      src={'http://localhost:8080/' + product.imageUrl}
+                      src={`${process.env.REACT_APP_BACKEND_URL}/${product.imageUrl}`}
                       alt=""
                     />
                     <ProductInfo>
