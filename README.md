@@ -50,3 +50,5 @@ Full-Stack Bookstore Web using MERN Stack.
     <td><img src="https://github.com/ntritin62/reactjs-bookstore/assets/104788686/c8c66edb-06e4-40b5-a539-9325cc8bada3" alt="mockups" /></td>
   </tr>
 </table>
+
+## Responsive Preview:
