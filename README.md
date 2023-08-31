@@ -69,17 +69,23 @@ npm run start:dev
 ```
 
 3. Run the frontend
-   ```sh
-   cd frontend
-   ```
-   ```sh
-   npm install
-   ```
-   ```sh
-   npm start
-   ```
-   <strong>!!!NOTE: Keep the frontend and backend running in parallel</strong>
+
+```sh
+cd frontend
+```
+
+```sh
+npm install
+```
+
+```sh
+npm start
+```
+
+<strong>!!!NOTE: Keep the frontend and backend running in parallel</strong>
 
 <strong>Account admin:</strong>
+<br>
 Email: admin@admin.com
+<br>
 Password: 123456
