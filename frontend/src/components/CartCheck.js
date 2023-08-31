@@ -10,7 +10,10 @@ const CartCheck = ({ product }) => {
     <>
       <Container>
         <div>
-          <Image src={'http://localhost:8080/' + product.imageUrl} alt="" />
+          <Image
+            src={`${process.env.REACT_APP_BACKEND_URL}/${product.imageUrl}`}
+            alt=""
+          />
           <Title>{product.title}</Title>
         </div>
         <div>
@@ -30,7 +33,10 @@ const CartCheck = ({ product }) => {
       </Container>
       <Mobile>
         <div>
-          <Image src={product.imageURL} alt="" />
+          <Image
+            src={`${process.env.REACT_APP_BACKEND_URL}/${product.imageUrl}`}
+            alt=""
+          />
         </div>
         <div>
           <Title>{product.title}</Title>

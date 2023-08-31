@@ -7,6 +7,9 @@ const Product = require('../models/product');
 
 exports.getProducts = (req, res, next) => {
   Product.find()
+    .sort({
+      createdAt: -1,
+    })
     .then((products) => {
       res.status(200).json({
         message: 'Fetched products successfully',

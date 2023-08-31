@@ -51,4 +51,35 @@ Full-Stack Bookstore Web using MERN Stack.
   </tr>
 </table>
 
-## Responsive Preview:
+## Getting started:
+
+1. Download file zip and extract
+2. Run the backend server
+
+```sh
+cd backend
+```
+
+```sh
+npm install
+```
+
+```sh
+npm run start:dev
+```
+
+3. Run the frontend
+   ```sh
+   cd frontend
+   ```
+   ```sh
+   npm install
+   ```
+   ```sh
+   npm start
+   ```
+   <strong>!!!NOTE: Keep the frontend and backend running in parallel</strong>
+
+<strong>Account admin:</strong>
+Email: admin@admin.com
+Password: 123456

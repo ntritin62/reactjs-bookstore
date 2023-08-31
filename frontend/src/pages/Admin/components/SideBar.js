@@ -2,12 +2,17 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../../redux/userSlice';
 
 const SideBar = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
     <Container>
-      <img src="/images/logo.svg" alt="" />
+      <NavLink to="/">
+        <img src="/images/logo.svg" alt="" />
+      </NavLink>
       <h1>ADMIN</h1>
       <NavLink
         to="/admin/products"
@@ -24,6 +29,7 @@ const SideBar = () => {
       <button
         onClick={() => {
           localStorage.removeItem('token');
+          dispatch(setUser(null));
           navigate('/');
         }}
       >
@@ -54,7 +60,9 @@ const Container = styled.div`
   img {
     width: 100px;
     height: 100px;
-    margin-bottom: 50px;
+  }
+  a:first-child {
+    margin: 50px 0;
   }
   a {
     display: block;

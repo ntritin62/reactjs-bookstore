@@ -25,7 +25,7 @@ const LastStepCheckOutPage = () => {
       address: address,
     };
     const token = getAuthToken();
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/order`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/shop/order`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -158,7 +158,7 @@ const CTAActions = styled.div`
       }
     }
     button {
-      background: #2ee5ab;
+      background: #004aad;
       color: white;
       border: none;
       width: 250px;
