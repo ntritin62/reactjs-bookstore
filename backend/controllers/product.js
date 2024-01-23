@@ -74,10 +74,11 @@ exports.createProduct = async (req, res, next) => {
     title: title,
     author: author,
     category: category,
-    imageUrl: imageUrl,
+    imageUrl: key,
     oldprice: oldprice,
     price: newprice,
     saleoff: saleoff,
+    imageKey: key,
   });
   product
     .save()

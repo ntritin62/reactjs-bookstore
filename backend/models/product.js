@@ -32,6 +32,10 @@ const productSchema = new Schema(
       type: String,
       required: true,
     },
+    imageKey: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

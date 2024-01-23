@@ -9,6 +9,7 @@ const VND = new Intl.NumberFormat('vi-VN', {
 const AdminOrders = () => {
   const [toastShowing, setToastShowing] = useState(false);
   const orderData = useLoaderData();
+  console.log(orderData);
   const [ordersList, setOrdersList] = useState(orderData);
   useEffect(() => {
     const TimeOut = setTimeout(() => {
