@@ -164,7 +164,6 @@ const CTAActions = styled.div`
       width: 250px;
       height: 50px;
       border-radius: 10px;
-      color: black;
       font-weight: 700;
       font-size: 18px;
       cursor: pointer;

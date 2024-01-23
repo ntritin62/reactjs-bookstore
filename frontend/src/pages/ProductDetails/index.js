@@ -28,10 +28,7 @@ const ProductDetails = () => {
     <>
       <Container>
         <MediaDetails>
-          <ProductImg
-            src={`${process.env.REACT_APP_BACKEND_URL}/` + bookData.imageUrl}
-            alt=""
-          />
+          <ProductImg src={bookData.imageUrl} alt="" />
           <ProductActions>
             <button onClick={addToCartHandler}>Thêm vào giỏ hàng</button>
             <button
@@ -82,10 +79,7 @@ const ProductDetails = () => {
           <Backdrop onClick={() => setModalIsShowed(false)} />
           <Modal>
             <p>Sản phẩm đã được thêm thành công vào giỏ hàng của bạn</p>
-            <img
-              src={`${process.env.REACT_APP_BACKEND_URL}/` + bookData.imageUrl}
-              alt=""
-            />
+            <img src={bookData.imageUrl} alt="" />
 
             <div>
               <button onClick={() => setModalIsShowed(false)}>Chọn thêm</button>
@@ -243,6 +237,7 @@ const QuantityActions = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
       img {
         width: 10px;
       }

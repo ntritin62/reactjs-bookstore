@@ -1,57 +1,69 @@
 const fs = require('fs');
 const path = require('path');
 
+const uploadToS3 = require('../utils/uploadToS3');
+const getImageUrl = require('../utils/getImageUrl');
+
 const { validationResult } = require('express-validator');
 
 const Product = require('../models/product');
 
-exports.getProducts = (req, res, next) => {
-  Product.find()
-    .sort({
-      createdAt: -1,
-    })
-    .then((products) => {
-      res.status(200).json({
-        message: 'Fetched products successfully',
-        products: products,
-      });
-    })
-    .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      next(err);
+exports.getProducts = async (req, res, next) => {
+  try {
+    let products = await Product.find().sort({ createdAt: -1 });
+
+    products = await Promise.all(
+      products.map(async (product) => {
+        let key = product.imageUrl;
+        product.imageUrl = await getImageUrl({ key });
+        return product;
+      })
+    );
+
+    res.status(200).json({
+      message: 'Fetched products successfully',
+      products: products,
     });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
 };
 
-exports.getProduct = (req, res, next) => {
+exports.getProduct = async (req, res, next) => {
   const productId = req.params.productId;
-  Product.findById(productId)
-    .then((product) => {
-      if (!product) {
-        const error = new Error('Could not find product.');
-        error.statusCode = 404;
-        throw error;
-      }
-      res.status(200).json({ message: 'Product fetched', product: product });
-    })
-    .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      next(err);
-    });
+  try {
+    const product = await Product.findById(productId);
+    if (!product) {
+      const error = new Error('Could not find product.');
+      error.statusCode = 404;
+      throw error;
+    }
+    let key = product.imageUrl;
+    product.imageUrl = await getImageUrl({ key });
+
+    res.status(200).json({ message: 'Product fetched', product: product });
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
 };
 
-exports.createProduct = (req, res, next) => {
-  console.log(req.body);
+exports.createProduct = async (req, res, next) => {
   if (!req.file) {
     const error = new Error('No image provided.');
     error.statusCode = 422;
     throw error;
   }
+  const file = req.file;
+  const { key, error } = await uploadToS3({ file });
 
-  const imageUrl = req.file.path;
+  const imageUrl = key;
+
   const title = req.body.title;
   const author = req.body.author;
   const category = req.body.category;
@@ -82,7 +94,7 @@ exports.createProduct = (req, res, next) => {
     });
 };
 
-exports.updateProduct = (req, res, next) => {
+exports.updateProduct = async (req, res, next) => {
   const productId = req.params.productId;
   const title = req.body.title;
   const author = req.body.author;
@@ -93,7 +105,9 @@ exports.updateProduct = (req, res, next) => {
   let imageUrl = req.body.image;
 
   if (req.file) {
-    imageUrl = req.file.path;
+    const file = req.file;
+    const { key, error } = await uploadToS3({ file });
+    imageUrl = key;
   }
 
   Product.findById(productId)

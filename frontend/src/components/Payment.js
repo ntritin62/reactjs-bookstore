@@ -77,7 +77,7 @@ const Input = styled.input`
   display: none;
 
   &:checked ~ div {
-    border: 2px solid #c92127;
+    border: 2px solid #004aad;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,7 +87,7 @@ const Input = styled.input`
       width: 50%;
       height: 50%;
       border-radius: 50%;
-      background: #c92127;
+      background: #004aad;
     }
   }
 `;

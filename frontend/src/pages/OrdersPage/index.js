@@ -45,10 +45,7 @@ const OrdersPage = () => {
                 <ProductList>
                   {order.cart.products.map((product) => (
                     <ProductItem key={product._id}>
-                      <img
-                        src={`${process.env.REACT_APP_BACKEND_URL}/${product.imageUrl}`}
-                        alt=""
-                      />
+                      <img src={`${product.imageUrl}`} alt="" />
                       <ProductInfo>
                         <span>{product.title}</span>
                         <span>Số lượng: {product.quantity}</span>

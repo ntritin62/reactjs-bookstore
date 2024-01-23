@@ -14,10 +14,7 @@ const ProductCartItem = ({ product }) => {
   const dispatch = useDispatch();
   return (
     <Container>
-      <ProductImage
-        src={`${process.env.REACT_APP_BACKEND_URL}/${product.imageUrl}`}
-        alt=""
-      />
+      <ProductImage src={`${product.imageUrl}`} alt="" />
       <section>
         <ProductInfo>
           <ProductTitle>{product.title}</ProductTitle>

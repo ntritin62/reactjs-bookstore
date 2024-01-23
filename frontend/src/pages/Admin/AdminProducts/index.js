@@ -147,12 +147,11 @@ const AdminProducts = () => {
             </InputBlock>
             <InputBlock>
               <Label htmlFor="category">Thể loại</Label>
-
               <select
                 id="category"
                 name="category"
                 onChange={(e) => setCategory(e.target.value)}
-                defaultValue="manga"
+                defaultValue={category || 'manga'}
               >
                 <option value="manga">Manga</option>
                 <option value="van-hoc">Văn học</option>
@@ -256,10 +255,7 @@ const AdminProducts = () => {
         <ProductsList>
           {products.map((product) => (
             <ProductItem key={product._id}>
-              <img
-                src={`${process.env.REACT_APP_BACKEND_URL}/${product.imageUrl}`}
-                alt=""
-              />
+              <img src={`${product.imageUrl}`} alt="" />
               <ProductInfo>
                 <ProductTitle>{product.title}</ProductTitle>
                 <ProductAuthor>Tác giả: {product.author}</ProductAuthor>
@@ -279,6 +275,7 @@ const AdminProducts = () => {
                     setNewprice(product.price);
                     setOldprice(product.oldprice);
                     setSaleoff(product.saleoff);
+                    setCategory(product.category);
                     setFormIsShow(true);
                     setIsEdited(product._id);
                   }}
